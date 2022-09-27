@@ -1,0 +1,100 @@
+classDiagram
+
+    Hotel --o HotelLocation
+    Hotel --* Habitacion
+    Hotel --* Empleado
+
+    Invitado --o Cuenta
+    Recepcionista --o Cuenta
+    ServicioLimpieza --o Cuenta
+
+    Persona <|-- Invitado
+    Persona <|-- Recepcionista
+    Persona <|-- ServicioLimpieza
+    Persona <|-- Gerente
+    Persona <|-- AmaDeLlaves
+    Persona <|-- Empleado
+
+    Habitacion o-- RoomBooking
+    Habitacion o-- RoomHouseKeeping
+    Habitacion o-- RoomCharge
+    Habitacion --o RoomKey
+    Habitacion --o ServicioLimpieza
+
+    Cuenta o-- Notificacion
+    Cuenta o-- Factura
+
+    Recepcionista o-- Pago
+
+    Empleado <|-- Recepcionista
+    Empleado <|-- Gerente
+    Empleado <|-- AmaDeLlaves
+
+    class Hotel
+    Hotel: +HotelLocation
+
+    class HotelLocation
+    HotelLocation: +ubicacion
+
+    class Habitacion
+    Habitacion: +numHabitacion
+    Habitacion: +tipoHabitacion
+    Habitacion: +precioDeReserva
+
+    class Cuenta 
+    Cuenta: +tipoCuenta
+
+    class Persona 
+    Persona: +nombre
+    Persona: +apellido
+    Persona: +domicilio
+
+    class Gerente
+    Gerente: +registroCuenta()
+    Gerente: +agregarEmpleado()
+
+    class Empleado
+    Empleado: +email
+
+    class Invitado
+    Invitado: +buscar()
+    Invitado: +reservar()
+
+    class AmaDeLlaves
+    AmaDeLlaves: +agregarRegistro()
+
+    class Recepcionista
+    Recepcionista: +agregarHabitacion()
+    Recepcionista: +crearReserva()
+    Recepcionista: +cancelacion()
+    Recepcionista: +checkIn()
+    Recepcionista: +checkOut()
+
+    class ServicioLimpieza
+    ServicioLimpieza: +seguimientoRegistro
+
+    class RoomBooking 
+    RoomBooking: +gestionReserva
+
+    class Notificacion
+    Notificacion: +notificacion
+
+    class RoomHouseKeeping
+    RoomHouseKeeping: +registroHabitaciones
+
+    class RoomCharge
+    RoomCharge: +TipoServicio
+
+    class Factura
+    Factura: +idFactura
+    Factura: +nombre
+    Factura: +domicilio
+    Factura: +total
+    Factura: +cargoHabitacion
+
+    class RoomKey 
+    RoomKey: +idLlave
+
+    class Pago
+    Pago: +efectivo
+    Pago: +Credito
