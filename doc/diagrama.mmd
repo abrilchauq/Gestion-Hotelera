@@ -1,64 +1,81 @@
 classDiagram
 
-    Hotel --o HotelLocation
-    Hotel --* Habitacion
-    Hotel --* Empleado
+    Hotel o-- HotelLocation
+    Hotel *-- Habitacion
 
-    Invitado --o Cuenta
+    Persona <|-- Huesped 
+    Persona <|-- Recepcionista
+    Persona <|-- Gerente
+    Persona <|-- AmaDeLlaves
+    Persona <|-- Mozo
+
+   huesped --o Cuenta
     Recepcionista --o Cuenta
     ServicioLimpieza --o Cuenta
 
-    Persona <|-- Invitado
-    Persona <|-- Recepcionista
-    Persona <|-- ServicioLimpieza
-    Persona <|-- Gerente
-    Persona <|-- AmaDeLlaves
-    Persona <|-- Empleado
+    ServicioLimpieza o-- AmaDeLlaves
 
     Habitacion o-- RoomBooking
     Habitacion o-- RoomHouseKeeping
     Habitacion o-- RoomCharge
     Habitacion --o RoomKey
-    Habitacion --o ServicioLimpieza
+    Habitacion o-- ServicioLimpieza
+    Habitacion o-- Mozo
 
     Cuenta o-- Notificacion
     Cuenta o-- Factura
 
     Recepcionista o-- Pago
 
-    Empleado <|-- Recepcionista
-    Empleado <|-- Gerente
-    Empleado <|-- AmaDeLlaves
+    Habitacion *-- Estandar
+    Habitacion *-- Lujo
+    Habitacion *-- SuiteFamiliar
+
+    RoomCharge --* Alimentos
+    RoomCharge --* ServicioHabitacion
+    RoomCharge --* Comodidades
+
+    Sistema --* Hotel
+    Sistema --o Reserva
+
+    Usuario o-- AmaDeLlaves
+    Usuario o-- Mozo 
+    Usuario o-- Recepcionista
+    Usuario o-- Invitado
+    Usuario o-- Gerente
+
+    Reserva --o ReservaHistorial 
+
+
 
     class Hotel
     Hotel: +HotelLocation
+    Hotel: +Habitacion
 
     class HotelLocation
     HotelLocation: +ubicacion
-
-    class Habitacion
-    Habitacion: +numHabitacion
-    Habitacion: +tipoHabitacion
-    Habitacion: +precioDeReserva
-
-    class Cuenta 
-    Cuenta: +tipoCuenta
 
     class Persona 
     Persona: +nombre
     Persona: +apellido
     Persona: +domicilio
 
+    class Habitacion
+    Habitacion: +numHabitacion
+    Habitacion: +tipoHabitacion
+    Habitacion: +precioDeReserva
+    Habitacion: +disponibilidad
+
+    class Cuenta 
+    Cuenta: +tipoCuenta
+
     class Gerente
     Gerente: +registroCuenta()
     Gerente: +agregarEmpleado()
 
-    class Empleado
-    Empleado: +email
-
-    class Invitado
-    Invitado: +buscar()
-    Invitado: +reservar()
+    class Huesped
+    Huesped: +buscar()
+    Huesped: +reservar()
 
     class AmaDeLlaves
     AmaDeLlaves: +agregarRegistro()
@@ -66,21 +83,21 @@ classDiagram
     class Recepcionista
     Recepcionista: +agregarHabitacion()
     Recepcionista: +crearReserva()
-    Recepcionista: +cancelacion()
+    Recepcionista: +cancelarReserva()
     Recepcionista: +checkIn()
     Recepcionista: +checkOut()
 
     class ServicioLimpieza
-    ServicioLimpieza: +seguimientoRegistro
+    ServicioLimpieza: +seguimientoRegistro()
 
     class RoomBooking 
-    RoomBooking: +gestionReserva
+    RoomBooking: +gestionReserva()
 
     class Notificacion
     Notificacion: +notificacion
 
     class RoomHouseKeeping
-    RoomHouseKeeping: +registroHabitaciones
+    RoomHouseKeeping: +registroHabitaciones()
 
     class RoomCharge
     RoomCharge: +TipoServicio
@@ -97,4 +114,57 @@ classDiagram
 
     class Pago
     Pago: +efectivo
-    Pago: +Credito
+    Pago: +credito
+    Pago: +cheque
+
+    class ReservaHistorial
+    ReservaHistorial: +que
+    ReservaHistorial: +quien
+    ReservaHistorial: +fecha
+
+    class Reserva
+    Reserva: +estado
+    Reserva: +fechaReserva
+    Reserva: +fechaHospedaje
+    Reserva: +tipoHabitacion
+    Reserva: +huesped
+    Reserva: +cancelacion()
+
+    class Estandar
+
+    class Lujo
+
+    class SuiteFamiliar
+
+    class Alimentos
+
+    class ServicioHabitacion
+
+    class Comodidades
+
+    class Mozo
+    Mozo: +agregarRegistroH
+
+    class Usuario
+    Usuario: +email
+
+    class Sistema
+    Sistema: +Usuarios
+    Sistema: +Habitaciones
+    Sistema: +Reservas
+    Sistema: +ReservaHistorial
+    Sistema: +ServicioLimpieza
+    Sistema: +Huespedes
+
+    Sistema: +agregarHabitacion()
+    Sistema: +buscarHabitacion()
+    Sistema: +eliminarHabitacion()
+    Sistema: +editarHabitacion()
+    Sistema: +registrarCuenta()
+    Sistema: +cancelarCuenta()
+    Sistema: +reservarHabitacion()
+    Sistema: +checkIn()
+    Sistema: +checkOut()
+    Sistema: +agregarGasto()
+    Sistema: +actualizarRegistroDeLimpieza()
+    Sistema: +reembolso()
