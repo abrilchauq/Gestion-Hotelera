@@ -2,52 +2,6 @@ classDiagram
 
     Hotel o-- HotelLocation
     Hotel *-- Habitacion
-
-    Persona <|-- Huesped 
-    Persona <|-- Recepcionista
-    Persona <|-- Gerente
-    Persona <|-- AmaDeLlaves
-    Persona <|-- Mozo
-
-   huesped --o Cuenta
-    Recepcionista --o Cuenta
-    ServicioLimpieza --o Cuenta
-
-    ServicioLimpieza o-- AmaDeLlaves
-
-    Habitacion o-- RoomBooking
-    Habitacion o-- RoomHouseKeeping
-    Habitacion o-- RoomCharge
-    Habitacion --o RoomKey
-    Habitacion o-- ServicioLimpieza
-    Habitacion o-- Mozo
-
-    Cuenta o-- Notificacion
-    Cuenta o-- Factura
-
-    Recepcionista o-- Pago
-
-    Habitacion *-- Estandar
-    Habitacion *-- Lujo
-    Habitacion *-- SuiteFamiliar
-
-    RoomCharge --* Alimentos
-    RoomCharge --* ServicioHabitacion
-    RoomCharge --* Comodidades
-
-    Sistema --* Hotel
-    Sistema --o Reserva
-
-    Usuario o-- AmaDeLlaves
-    Usuario o-- Mozo 
-    Usuario o-- Recepcionista
-    Usuario o-- Invitado
-    Usuario o-- Gerente
-
-    Reserva --o ReservaHistorial 
-
-
-
     class Hotel
     Hotel: +HotelLocation
     Hotel: +Habitacion
@@ -55,10 +9,26 @@ classDiagram
     class HotelLocation
     HotelLocation: +ubicacion
 
+    Persona <|-- Huesped 
+    Persona <|-- Recepcionista
+    Persona <|-- Gerente
+    Persona <|-- AmaDeLlaves
+    Persona <|-- Mozo
+
     class Persona 
     Persona: +nombre
     Persona: +apellido
     Persona: +domicilio
+
+    Habitacion o-- RoomBooking
+    Habitacion o-- RoomHouseKeeping
+    Habitacion o-- RoomCharge
+    Habitacion --o RoomKey
+    Habitacion o-- ServicioLimpieza
+    Habitacion o-- Mozo
+    Habitacion *-- Estandar
+    Habitacion *-- Lujo
+    Habitacion *-- SuiteFamiliar
 
     class Habitacion
     Habitacion: +numHabitacion
@@ -66,12 +36,17 @@ classDiagram
     Habitacion: +precioDeReserva
     Habitacion: +disponibilidad
 
-    class Cuenta 
+    Cuenta o-- Notificacion
+    Cuenta o-- Factura
+
+    class Cuenta
     Cuenta: +tipoCuenta
 
     class Gerente
     Gerente: +registroCuenta()
     Gerente: +agregarEmpleado()
+
+    Huesped --o Cuenta
 
     class Huesped
     Huesped: +buscar()
@@ -80,12 +55,18 @@ classDiagram
     class AmaDeLlaves
     AmaDeLlaves: +agregarRegistro()
 
+    Recepcionista --o Cuenta
+    Recepcionista o-- Pago
+
     class Recepcionista
     Recepcionista: +agregarHabitacion()
     Recepcionista: +crearReserva()
     Recepcionista: +cancelarReserva()
     Recepcionista: +checkIn()
     Recepcionista: +checkOut()
+
+    ServicioLimpieza --o Cuenta
+    ServicioLimpieza o-- AmaDeLlaves
 
     class ServicioLimpieza
     ServicioLimpieza: +seguimientoRegistro()
@@ -99,7 +80,12 @@ classDiagram
     class RoomHouseKeeping
     RoomHouseKeeping: +registroHabitaciones()
 
+    RoomCharge --* Alimentos
+    RoomCharge --* ServicioHabitacion
+    RoomCharge --* Comodidades
+
     class RoomCharge
+    
     RoomCharge: +TipoServicio
 
     class Factura
@@ -121,6 +107,8 @@ classDiagram
     ReservaHistorial: +que
     ReservaHistorial: +quien
     ReservaHistorial: +fecha
+
+    Reserva --o ReservaHistorial
 
     class Reserva
     Reserva: +estado
@@ -145,17 +133,30 @@ classDiagram
     class Mozo
     Mozo: +agregarRegistroH
 
+    Usuario o-- AmaDeLlaves
+    Usuario o-- Mozo 
+    Usuario o-- Recepcionista
+    Usuario o-- Invitado
+    Usuario o-- Gerente
+    
     class Usuario
     Usuario: +email
 
+    Sistema --* Hotel
+    Sistema --o Reserva
+    Sistema --o Huesped
+    Sistema --o Usuario
+    Sistema --o ServicioLimpieza
+    Sistema --o ReservaHistorial
+    Sistema --o Habitacion
+
     class Sistema
-    Sistema: +Usuarios
-    Sistema: +Habitaciones
-    Sistema: +Reservas
+    Sistema: +Usuario
+    Sistema: +Habitacion
+    Sistema: +Reserva
     Sistema: +ReservaHistorial
     Sistema: +ServicioLimpieza
-    Sistema: +Huespedes
-
+    Sistema: +Huesped
     Sistema: +agregarHabitacion()
     Sistema: +buscarHabitacion()
     Sistema: +eliminarHabitacion()
