@@ -1,25 +1,12 @@
 classDiagram
 
-    Hotel o-- HotelLocation
     Hotel *-- Habitacion
     
     class Hotel
     Hotel: +HotelLocation
-    Hotel: +Habitacion
+    Hotel: +Habitaciones
 
-    class HotelLocation
-    HotelLocation: +ubicacion
 
-    Persona <|-- Huesped 
-    Persona <|-- Recepcionista
-    Persona <|-- Gerente
-    Persona <|-- AmaDeLlaves
-    Persona <|-- Mozo
-
-    class Persona 
-    Persona: +nombre
-    Persona: +apellido
-    Persona: +domicilio
 
     Habitacion o-- RoomBooking
     Habitacion o-- RoomHouseKeeping
@@ -41,6 +28,8 @@ classDiagram
     Cuenta o-- Factura
 
     class Cuenta
+    Cuenta: +Huesped
+    Cuenta: +Habitaciones
     Cuenta: +tipoCuenta
 
     class Gerente
@@ -48,10 +37,13 @@ classDiagram
     Gerente: +agregarEmpleado()
 
     Huesped --o Cuenta
+    Huesped --o Sistema
 
     class Huesped
     Huesped: +buscar()
     Huesped: +reservar()
+
+    AmaDeLlaves --o Habitacion
 
     class AmaDeLlaves
     AmaDeLlaves: +agregarRegistro()
@@ -66,14 +58,20 @@ classDiagram
     Recepcionista: +checkIn()
     Recepcionista: +checkOut()
 
+    ServicioLimpieza --o Sistema
     ServicioLimpieza --o Cuenta
-    ServicioLimpieza o-- AmaDeLlaves
+    ServicioLimpieza --* Habitacion
 
     class ServicioLimpieza
     ServicioLimpieza: +seguimientoRegistro()
 
     class RoomBooking 
-    RoomBooking: +gestionReserva()
+    RoomBooking: +cancelarReserva()
+    RoomBooking: +crearReserva()
+    RoomBooking: +editarReserva()
+    RoomBooking: +accederReservas()
+
+    RoomBooking --o ReservaHistorial
 
     class Notificacion
     Notificacion: +notificacion
@@ -81,13 +79,12 @@ classDiagram
     class RoomHouseKeeping
     RoomHouseKeeping: +registroHabitaciones()
 
-    RoomCharge --* Alimentos
-    RoomCharge --* ServicioHabitacion
-    RoomCharge --* Comodidades
-
     class RoomCharge
-    
-    RoomCharge: +TipoServicio
+    RoomCharge: +Comodidades
+    RoomCharge: +ServicioHabitacion
+    RoomCharge: +ServicioLimpieza
+    RoomCharge: +seguimientoRegistro
+    RoomCharge: +Alimentos
 
     class Factura
     Factura: +idFactura
@@ -104,19 +101,24 @@ classDiagram
     Pago: +credito
     Pago: +cheque
 
-    class ReservaHistorial
-    ReservaHistorial: +que
-    ReservaHistorial: +quien
-    ReservaHistorial: +fecha
+    ReservaHistorial o--  Sistema
 
+    class ReservaHistorial
+    ReservaHistorial: +tipoHabitacion
+    ReservaHistorial: +huespedes
+    ReservaHistorial: +fechaReserva
+    ReservaHistorial: +ReservasCompletadas()
+    ReservaHistorial: +ReservasCanceladas()
+    
     Reserva --o ReservaHistorial
+    Reserva --o Sistema
 
     class Reserva
     Reserva: +estado
     Reserva: +fechaReserva
     Reserva: +fechaHospedaje
     Reserva: +tipoHabitacion
-    Reserva: +huesped
+    Reserva: +huespedes
     Reserva: +cancelacion()
 
     class Estandar
@@ -125,39 +127,42 @@ classDiagram
 
     class SuiteFamiliar
 
+    Alimentos --* RoomCharge
     class Alimentos
 
+    ServicioHabitacion --* RoomCharge
     class ServicioHabitacion
 
+    Comodidades --* RoomCharge
     class Comodidades
 
     class Mozo
     Mozo: +agregarRegistroH
 
-    Usuario o-- AmaDeLlaves
-    Usuario o-- Mozo 
-    Usuario o-- Recepcionista
-    Usuario o-- Invitado
-    Usuario o-- Gerente
+    Usuario <|-- Huesped
+    Usuario <|--  AmaDeLlaves
+    Usuario <|-- Mozo 
+    Usuario <|-- Recepcionista
+    Usuario <|-- Invitado
+    Usuario <|-- Gerente
+    Usuario --o Sistema
 
     class Usuario
     Usuario: +email
+    Usuario: +nombre
+    Usuario: +apellido
+    Usuario: +domicilio
 
     Sistema --* Hotel
-    Sistema --o Reserva
-    Sistema --o Huesped
-    Sistema --o Usuario
-    Sistema --o ServicioLimpieza
-    Sistema --o ReservaHistorial
     Sistema --o Habitacion
 
     class Sistema
-    Sistema: +Usuario
-    Sistema: +Habitacion
+    Sistema: +Usuarios
+    Sistema: +Habitaciones
     Sistema: +Reserva
     Sistema: +ReservaHistorial
     Sistema: +ServicioLimpieza
-    Sistema: +Huesped
+    Sistema: +Huespedes
     Sistema: +agregarHabitacion()
     Sistema: +buscarHabitacion()
     Sistema: +eliminarHabitacion()
