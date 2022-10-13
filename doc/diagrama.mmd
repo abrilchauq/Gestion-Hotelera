@@ -9,7 +9,7 @@ classDiagram
 
 
     Habitacion o-- RoomBooking
-    Habitacion o-- RoomHouseKeeping
+    Habitacion --* RoomHouseKeeping
     Habitacion o-- RoomCharge
     Habitacion --o RoomKey
     Habitacion o-- ServicioLimpieza
@@ -44,6 +44,7 @@ classDiagram
     Huesped: +reservar()
 
     AmaDeLlaves --o Habitacion
+    AmaDeLlaves --* RoomHouseKeeping
 
     class AmaDeLlaves
     AmaDeLlaves: +agregarRegistro()
@@ -74,10 +75,12 @@ classDiagram
     RoomBooking --o ReservaHistorial
 
     class Notificacion
-    Notificacion: +notificacion
+    Notificacion: +Notificacion
 
     class RoomHouseKeeping
     RoomHouseKeeping: +registroHabitaciones()
+    RoomHouseKeeping: +Habitacion 
+    RoomHouseKeeping: +AmaDeLlaves
 
     class RoomCharge
     RoomCharge: +Comodidades
@@ -88,9 +91,9 @@ classDiagram
 
     class Factura
     Factura: +idFactura
-    Factura: +nombre
-    Factura: +domicilio
-    Factura: +total
+    Factura: +Nombre
+    Factura: +Domicilio
+    Factura: +Total
     Factura: +cargoHabitacion
 
     class RoomKey 
@@ -101,7 +104,7 @@ classDiagram
     Pago: +credito
     Pago: +cheque
 
-    ReservaHistorial o--  Sistema
+    ReservaHistorial o-- Sistema
 
     class ReservaHistorial
     ReservaHistorial: +tipoHabitacion
@@ -140,7 +143,7 @@ classDiagram
     Mozo: +agregarRegistroH
 
     Usuario <|-- Huesped
-    Usuario <|--  AmaDeLlaves
+    Usuario <|-- AmaDeLlaves
     Usuario <|-- Mozo 
     Usuario <|-- Recepcionista
     Usuario <|-- Invitado
