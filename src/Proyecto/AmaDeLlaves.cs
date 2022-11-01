@@ -1,12 +1,16 @@
 namespace Proyecto;
 
-    public class AmaDeLlaves : Usuario
+public class AmaDeLlaves : Usuario
+{
+    public Guid idAmaDeLlaves { get; private set; }
+    public AmaDeLlaves(string email, string nombre, string apellido, string domicilio)
+        : base(email, nombre, apellido, domicilio)
     {
-        public AmaDeLlaves(string email, string nombre, string apellido, string domicilio)
-            : base(email, nombre, apellido, domicilio)
-            {
-                
-            }
-
-        public void agregarRegistro();
+        this.idAmaDeLlaves = Guid.NewGuid();
     }
+
+    public void agregarRegistro(ServicioLimpieza servicio, Registro registro)
+    {
+        servicio.agregarRegistro(registro);
+    }
+}

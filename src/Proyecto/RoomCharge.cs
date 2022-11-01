@@ -1,16 +1,17 @@
 namespace Proyecto;
 
-    public class RoomCharge
+public class RoomCharge
+{
+    public Guid IdRoomCharge { get; private set; }
+    public Comodidades Comodidades { get; private set; }
+    public ServicioHabitacion ServicioHabitacion { get; private set; }
+    public ServicioLimpieza ServicioLimpieza { get; private set; }
+    public Alimentos Alimentos { get; private set; }
+    public Registro Registro { get; private set; }
+
+    public RoomCharge()
     {
-        public Comodidades comodidades { get; private set; }
-        public ServicioHabitacion servicioHabitacion { get; private set; }
-        public ServicioLimpieza servicioLimpieza { get; private set; }
-        public SeguimientoRegistro seguimientoRegistro { get; private set; }
-        public Alimentos alimentos { get; private set; }
-
-        public RoomCharge()
-        {
-
-        }
+        this.IdRoomCharge = Guid.NewGuid();
     }
-    
+}
+

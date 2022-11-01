@@ -1,6 +1,7 @@
 namespace Proyecto;
 public class Reserva
 {
+    public Guid IdReserva { get; private set; }
     public bool estado { get; private set; } = false;
     public DateTime fechaReserva { get; private set; }
     public DateTime fechaHospedaje { get; private set; }
@@ -12,5 +13,6 @@ public class Reserva
         this.fechaReserva = fechaReserva;
         this.fechaHospedaje = fechaHospedaje;
         this.huespedes = new List<Huesped>();
+        this.IdReserva = Guid.NewGuid();
     }
 }

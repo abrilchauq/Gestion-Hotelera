@@ -1,13 +1,16 @@
 namespace Proyecto;
 
-    public class Mozo : Usuario
+public class Mozo : Usuario
+{
+    public Guid idMozo { get; private set; }
+    public Mozo(string email, string nombre, string apellido, string domicilio)
+        : base(email, nombre, apellido, domicilio)
     {
-        public Mozo(string email, string nombre, string apellido
-        , string domicilio)
-            : base(email, nombre, apellido, domicilio)
-            {
-
-            }
-        
-        public void agregarRegistroH();
+        this.idMozo = Guid.NewGuid();
     }
+
+    public void agregarRegistro(Habitacion habitacion)
+    {
+
+    }
+}

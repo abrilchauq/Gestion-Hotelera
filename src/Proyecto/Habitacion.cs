@@ -2,6 +2,7 @@ namespace Proyecto;
 
     public class Habitacion
     {
+        public Guid IdHabitacion { get; private set; }
         public int numHabitacion { get; private set; }
         public string tipoHabitacion { get; private set; }
         public double precioReserva { get; private set; }
@@ -13,5 +14,6 @@ namespace Proyecto;
             this.tipoHabitacion = tipoHabitacion;
             this.precioReserva = precioReserva;
             this.disponibilidad = disponibilidad;
+            this.IdHabitacion = Guid.NewGuid();
         }
     }

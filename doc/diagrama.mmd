@@ -12,9 +12,6 @@ classDiagram
     Habitacion --o RoomKey
     Habitacion o-- ServicioLimpieza
     Habitacion o-- Mozo
-    Habitacion *-- Estandar
-    Habitacion *-- Lujo
-    Habitacion *-- SuiteFamiliar
 
     class Habitacion
     Habitacion: +numHabitacion
@@ -84,8 +81,8 @@ classDiagram
     RoomCharge: +Comodidades
     RoomCharge: +ServicioHabitacion
     RoomCharge: +ServicioLimpieza
-    RoomCharge: +seguimientoRegistro
     RoomCharge: +Alimentos
+    RoomCharge: +seguimientoRegistro()
 
     class Factura
     Factura: +idFactura
@@ -122,11 +119,6 @@ classDiagram
     Reserva: +huespedes
     Reserva: +cancelacion()
 
-    class Estandar
-
-    class Lujo
-
-    class SuiteFamiliar
 
     Alimentos --* RoomCharge
     class Alimentos
