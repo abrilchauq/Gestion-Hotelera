@@ -20,4 +20,9 @@ public class Habitacion
         this.Llave = llave;
         this.IdHabitacion = Guid.NewGuid();
     }
+
+    public void Liberar()
+    {
+        Disponibilidad = true;
+    }
 }

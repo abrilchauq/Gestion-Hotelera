@@ -9,13 +9,8 @@ public class Gerente : Usuario
         this.IdGerente = Guid.NewGuid();
     }
 
-    public void registroCuenta()
-    {
-
-    }
-
     public void agregarEmpleado()
     {
-
+        
     }
 }

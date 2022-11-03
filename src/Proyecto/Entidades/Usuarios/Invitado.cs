@@ -9,4 +9,6 @@ public class Invitado : Usuario
     {
         this.idInvitado = Guid.NewGuid();
     }
+
+
 }

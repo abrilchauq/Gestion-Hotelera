@@ -5,17 +5,28 @@ namespace Proyecto.Entidades.Reservacion;
 public class Reserva
 {
     public Guid IdReserva { get; private set; }
-    public bool Estado { get; private set; } = false;
+    public eEstadoReserva Estado { get; private set; } = eEstadoReserva.Activa;
     public DateTime FechaReserva { get; private set; }
     public DateTime FechaHospedaje { get; private set; }
     public eTipoHabitacion Tipo { get; private set; }
     public List<Huesped> Huespedes { get; private set; }
-    public Reserva(eTipoHabitacion tipo, DateTime fechaReserva, DateTime fechaHospedaje, string tipoHabitacion)
+    public Reserva(eTipoHabitacion tipo, DateTime fechaHospedaje, Huesped huesped)
     {
         this.Tipo = tipo;
-        this.FechaReserva = fechaReserva;
+        this.FechaReserva = DateTime.Now;
         this.FechaHospedaje = fechaHospedaje;
         this.Huespedes = new List<Huesped>();
         this.IdReserva = Guid.NewGuid();
+        this.Huespedes.Add(huesped);
+    }
+
+    public void Cancelar()
+    {
+        Estado = eEstadoReserva.Cancelada;
+    }
+
+    public void Completada()
+    {
+        Estado = eEstadoReserva.Completada;
     }
 }
