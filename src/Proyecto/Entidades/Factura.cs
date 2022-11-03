@@ -6,7 +6,6 @@ public class Factura
     public string Domicilio { get; private set; }
     public double Total { get; private set; }
     public double CargoHabitacion { get; private set; }
-
     public Factura(Guid IdFactura, string Nombre, string Domicilio, double Total, double CargoHabitacion)
     {
         this.IdFactura = Guid.NewGuid();

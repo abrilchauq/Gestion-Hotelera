@@ -3,8 +3,7 @@ namespace Proyecto.Entidades;
 public class Gerente : Usuario
 {
     public Guid IdGerente { get; private set; }
-    public Gerente(string email, string nombre, string apellido
-    , string domicilio)
+    public Gerente(string email, string nombre, string apellido, string domicilio)
         : base(email, nombre, apellido, domicilio)
     {
         this.IdGerente = Guid.NewGuid();
