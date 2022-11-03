@@ -1,12 +1,12 @@
-namespace Proyecto.Entidades;
+namespace Proyecto.Entidades.Usuarios;
 public class Recepcionista : Usuario
 {
-    public Guid idRecepcionista { get; private set; }
+    public Guid IdRecepcionista { get; private set; }
     public Recepcionista(string email, string nombre, string apellido
     , string domicilio)
         : base(email, nombre, apellido, domicilio)
     {
-        this.idRecepcionista = Guid.NewGuid();
+        this.IdRecepcionista = Guid.NewGuid();
     }
     public void agregarHabitacion()
     {

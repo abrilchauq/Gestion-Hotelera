@@ -1,4 +1,6 @@
-namespace Proyecto.Entidades;
+using Proyecto.Entidades.Servicios;
+
+namespace Proyecto.Entidades.Facturacion;
 
 public class RoomCharge
 {
@@ -7,7 +9,7 @@ public class RoomCharge
     public ServicioHabitacion? ServicioHabitacion { get; private set; }
     public ServicioLimpieza? ServicioLimpieza { get; private set; }
     public Alimentos? Alimentos { get; private set; }
-    public Registro? Registro { get; private set; }
+    public RegistroServicio? Registros { get; private set; }
 
     public RoomCharge()
     {

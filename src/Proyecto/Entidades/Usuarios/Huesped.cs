@@ -1,5 +1,7 @@
 
-namespace Proyecto.Entidades;
+using Proyecto.Entidades.Unidades;
+
+namespace Proyecto.Entidades.Usuarios;
 
 public class Huesped : Usuario
 {

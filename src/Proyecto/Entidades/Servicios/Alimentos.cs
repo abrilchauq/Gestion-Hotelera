@@ -1,4 +1,4 @@
-namespace Proyecto.Entidades;
+namespace Proyecto.Entidades.Servicios;
 
 public class Alimentos : ServicioHotel
 {

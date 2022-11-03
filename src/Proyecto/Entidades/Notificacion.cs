@@ -1,11 +1,11 @@
 ﻿namespace Proyecto.Entidades;
 public class Notificacion
 {
-    public Guid idNotificacion { get; private set; }
-    public string notificacion { get; private set; }
-    public Notificacion(string notificacion)
+    public Guid IdNotificacion { get; private set; }
+    public string Mensaje { get; private set; }
+    public Notificacion(string mensaje)
     {
-        this.idNotificacion = Guid.NewGuid();
-        this.notificacion = notificacion;
+        this.IdNotificacion = Guid.NewGuid();
+        this.Mensaje = mensaje;
     }
 }

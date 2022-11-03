@@ -1,4 +1,6 @@
-namespace Proyecto.Entidades;
+using Proyecto.Entidades.Servicios;
+
+namespace Proyecto.Entidades.Usuarios;
 
 public class AmaDeLlaves : Usuario
 {
@@ -9,7 +11,7 @@ public class AmaDeLlaves : Usuario
         this.IdAmaDeLlaves = Guid.NewGuid();
     }
 
-    public void agregarRegistro(ServicioLimpieza servicio, Registro registroLimpieza)
+    public void agregarRegistro(ServicioLimpieza servicio, RegistroServicio registroLimpieza)
     {
         servicio.agregarRegistro(registroLimpieza);
     }

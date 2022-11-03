@@ -1,16 +1,14 @@
+using Proyecto.Enums;
+
 namespace Proyecto.Entidades;
 public class Pago
 {
     public Guid IdPago { get; private set; }
-    public double Efectivo { get; private set; }
-    public double Credito { get; private set; }
-    public double Cheque { get; private set; }
+    public eTipoPago Tipo { get; private set; }
 
-    public Pago(double Efectivo, double Credito, double Cheque)
+    public Pago(eTipoPago tipo)
     {
-        this.Efectivo = Efectivo;
-        this.Credito = Credito;
-        this.Cheque = Cheque;
+        this.Tipo = tipo;
         this.IdPago = Guid.NewGuid();
     }
 }

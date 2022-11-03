@@ -1,3 +1,8 @@
+using Proyecto.Entidades.Reservacion;
+using Proyecto.Entidades.Servicios;
+using Proyecto.Entidades.Unidades;
+using Proyecto.Entidades.Usuarios;
+
 namespace Proyecto.Entidades;
 
 public class Sistema

@@ -1,6 +1,6 @@
-namespace Proyecto.Entidades;
+namespace Proyecto.Entidades.Servicios;
 
-public class ServicioHotel
+public abstract class ServicioHotel
 {
     public Guid IdServicioHotal { get; private set; }
     public double Precio { get; private set; }

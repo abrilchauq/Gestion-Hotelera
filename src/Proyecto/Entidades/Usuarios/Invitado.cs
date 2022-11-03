@@ -1,4 +1,4 @@
-namespace Proyecto.Entidades;
+namespace Proyecto.Entidades.Usuarios;
 
 public class Invitado : Usuario
 {
