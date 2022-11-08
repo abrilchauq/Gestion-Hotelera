@@ -3,13 +3,15 @@ namespace Proyecto.Entidades.Unidades;
 public class Hotel
 {
     public Guid IdHotel { get; private set; }
-    public string HotelLocation { get; private set; }
-    public List<Habitacion> Habitaciones { get; private set; }
+    public string Nombre { get; private set; }
+    public string Ubicacion { get; private set; }
+    public List<Sede> Sedes { get; private set; }
 
-    public Hotel(string HotelLocation)
+    public Hotel(string nombre, string ubicacion)
     {
-        this.HotelLocation = HotelLocation;
-        this.Habitaciones = new List<Habitacion>();
+        this.Nombre = nombre;
+        this.Ubicacion = ubicacion;
+        this.Sedes = new List<Sede>();
         this.IdHotel = Guid.NewGuid();
     }
 }

@@ -2,13 +2,13 @@ using Proyecto.Entidades.Servicios;
 
 namespace Proyecto.Entidades.Usuarios;
 
-public class AmaDeLlaves : Usuario
+public class Mucama : Persona
 {
-    public Guid IdAmaDeLlaves { get; private set; }
-    public AmaDeLlaves(string email, string nombre, string apellido, string domicilio)
+    public Guid IdMucama { get; private set; }
+    public Mucama(string email, string nombre, string apellido, string domicilio)
         : base(email, nombre, apellido, domicilio)
     {
-        this.IdAmaDeLlaves = Guid.NewGuid();
+        this.IdMucama = Guid.NewGuid();
     }
 
     public void agregarRegistro(ServicioLimpieza servicio, RegistroServicio registroLimpieza)

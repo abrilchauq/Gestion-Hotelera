@@ -3,14 +3,13 @@ using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
-public class Recepcionista : Usuario
+public class Recepcionista : Persona
 {
     public Guid IdRecepcionista { get; private set; }
     public List<Reserva> Reservas { get; private set; }
     public List<Habitacion> Habitaciones { get; private set; }
-    public Recepcionista(string email, string nombre, string apellido
-    , string domicilio)
-        : base(email, nombre, apellido, domicilio)
+    public Recepcionista(string email, string nombre, string apellido, string domicilio)
+        : base(email, nombre, apellido, domicilio, eTipoUsuario.Recepcionista)
     {
         this.IdRecepcionista = Guid.NewGuid();
         this.Reservas = new List<Reserva>();
@@ -33,7 +32,7 @@ public class Recepcionista : Usuario
     }
 
     public void checkIn(Huesped huesped, Guid idReserva)
-    { 
+    {
         var reserva = Reservas.FirstOrDefault(x => x.IdReserva == idReserva);
         reserva!.Completada();
         var habitacion = Habitaciones.FirstOrDefault(x => x.Disponibilidad);
@@ -41,7 +40,7 @@ public class Recepcionista : Usuario
     }
 
     public void checkOut(Huesped huesped)
-    { 
+    {
         var habitacion = Habitaciones.FirstOrDefault(X => X.IdHabitacion == huesped.Habitacion.IdHabitacion);
         habitacion!.Liberar();
     }
