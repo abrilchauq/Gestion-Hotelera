@@ -14,4 +14,9 @@ public class Hotel
         this.Sedes = new List<Sede>();
         this.IdHotel = Guid.NewGuid();
     }
+
+    public void AgregarSede(Sede sede)
+    {
+        this.Sedes.Add(sede);
+    }
 }

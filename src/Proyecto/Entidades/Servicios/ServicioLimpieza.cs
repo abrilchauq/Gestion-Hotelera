@@ -1,21 +1,25 @@
-using Proyecto.Entidades.Usuarios;
+using Proyecto.Entidades.Unidades;
 
 namespace Proyecto.Entidades.Servicios;
 
 public class ServicioLimpieza
 {
-    public List<RegistroServicio> Registros { get; private set; }
-    public List<Mucama> Mucamas { get; private set; }
-    public Guid idServicioLimpieza { get; private set; }
-    public ServicioLimpieza()
+    public string? descripcion { get; private set; }
+    public DateTime comienzo { get; private set; }
+    public int duracion { get; private set; }
+    public Habitacion? habitacion { get; set; }
+
+    public ServicioLimpieza(string descripcion, DateTime comienzo, int duracion)
     {
-        this.Registros = new List<RegistroServicio>();
-        this.Mucamas = new List<Mucama>();
-        this.idServicioLimpieza = Guid.NewGuid();
+        this.descripcion = descripcion;
+        this.comienzo = comienzo;
+        this.duracion = duracion;
     }
 
-    public void agregarRegistro(RegistroServicio unRegistro) =>
-         this.Registros.Add(unRegistro);
+    public void asignarHabitacion(Habitacion habitacion)
+    {
+        this.habitacion = habitacion;
+    }
 }
 
 

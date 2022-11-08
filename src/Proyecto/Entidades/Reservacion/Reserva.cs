@@ -8,16 +8,15 @@ public class Reserva
     public eEstadoReserva Estado { get; private set; } = eEstadoReserva.Activa;
     public DateTime FechaReserva { get; private set; }
     public DateTime FechaHospedaje { get; private set; }
-    public eTipoHabitacion Tipo { get; private set; }
-    public List<Huesped> Huespedes { get; private set; }
-    public Reserva(eTipoHabitacion tipo, DateTime fechaHospedaje, Huesped huesped)
+    public eTipoEstilo Tipo { get; private set; }
+    public Huesped Huesped { get; private set; }
+    public Reserva(eTipoEstilo tipo, DateTime fechaHospedaje, Huesped huesped)
     {
         this.Tipo = tipo;
         this.FechaReserva = DateTime.Now;
         this.FechaHospedaje = fechaHospedaje;
-        this.Huespedes = new List<Huesped>();
         this.IdReserva = Guid.NewGuid();
-        this.Huespedes.Add(huesped);
+        this.Huesped = huesped;
     }
 
     public void Cancelar()
@@ -26,6 +25,11 @@ public class Reserva
     }
 
     public void Completada()
+    {
+        Estado = eEstadoReserva.Completada;
+    }
+
+    internal void CheckIn()
     {
         Estado = eEstadoReserva.Completada;
     }

@@ -3,11 +3,13 @@ using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
-public class Recepcionista : Persona
+public class Recepcionista : Persona, IBuscar
 {
     public Guid IdRecepcionista { get; private set; }
     public List<Reserva> Reservas { get; private set; }
     public List<Habitacion> Habitaciones { get; private set; }
+    public List<Llave> Llaves { get; private set; }
+
     public Recepcionista(string email, string nombre, string apellido, string domicilio)
         : base(email, nombre, apellido, domicilio, eTipoUsuario.Recepcionista)
     {
@@ -15,17 +17,13 @@ public class Recepcionista : Persona
         this.Reservas = new List<Reserva>();
         this.Habitaciones = new List<Habitacion>();
     }
-    public void agregarHabitacion(Habitacion habitacion)
+
+    public void CrearReserva(Reserva reserva)
     {
-        this.Habitaciones.Add(habitacion);
+        this.Reservas.Add(reserva);
     }
 
-    public void crearReserva(eTipoHabitacion tipo, DateTime fechaHospedaje, Huesped huesped)
-    {
-        this.Reservas.Add(new Reserva(tipo, fechaHospedaje, huesped));
-    }
-
-    public void cancelarReserva(Guid IdReserva)
+    public void CancelarReserva(Guid IdReserva)
     {
         var reserva = Reservas.FirstOrDefault(x => x.IdReserva == IdReserva);
         reserva!.Cancelar();
@@ -34,14 +32,26 @@ public class Recepcionista : Persona
     public void checkIn(Huesped huesped, Guid idReserva)
     {
         var reserva = Reservas.FirstOrDefault(x => x.IdReserva == idReserva);
-        reserva!.Completada();
-        var habitacion = Habitaciones.FirstOrDefault(x => x.Disponibilidad);
-        huesped.AsignarHabitacion(habitacion);
+        if (reserva is not null)
+        {
+            var habitacion = Habitaciones.FirstOrDefault(x => x.Tipo == reserva!.Tipo);
+            if (habitacion!.Estado == eEstadoHabitacion.Disponible)
+            {
+                reserva!.CheckIn();
+            }
+        }
+        else
+            throw new Exception("No se encontro la reserva");
     }
 
     public void checkOut(Huesped huesped)
     {
-        var habitacion = Habitaciones.FirstOrDefault(X => X.IdHabitacion == huesped.Habitacion.IdHabitacion);
-        habitacion!.Liberar();
+        // var habitacion = Habitaciones.FirstOrDefault(X => X.IdHabitacion == huesped.Habitacion.IdHabitacion);
+        // habitacion!.Liberar();
+    }
+
+    public void buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias)
+    {
+        var habitacion = Habitaciones.Where(x => x.estilo == List<Habitacion> Habitaciones);
     }
 }

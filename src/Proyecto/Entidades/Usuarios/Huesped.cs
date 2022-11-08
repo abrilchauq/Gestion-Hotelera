@@ -1,9 +1,10 @@
+using Proyecto.Entidades.Reservacion;
 using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
 
-public class Huesped : Persona
+public class Huesped : Persona, IBuscar
 {
     public Guid idHuesped { get; private set; }
     public Habitacion Habitacion { get; private set; }
@@ -23,6 +24,16 @@ public class Huesped : Persona
 
     }
     public void Reservar(Habitacion habitacion)
+    {
+
+    }
+
+    public void buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void CancelarReserva(Reserva reserva)
     {
 
     }

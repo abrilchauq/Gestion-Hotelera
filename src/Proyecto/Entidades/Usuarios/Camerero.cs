@@ -1,3 +1,5 @@
+using Proyecto.Entidades.Facturacion;
+using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
@@ -9,5 +11,10 @@ public class Camarero : Persona
         : base(email, nombre, telefono, domicilio, eTipoUsuario.Camarero)
     {
         this.IdCamarero = Guid.NewGuid();
+    }
+
+    public void AgregarRoomCharge(Habitacion habitacion, RoomCharge roomCharge)
+    {
+        //agregar room charge por habitacion
     }
 }

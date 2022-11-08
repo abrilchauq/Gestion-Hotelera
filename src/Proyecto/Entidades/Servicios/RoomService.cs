@@ -7,6 +7,7 @@ public class RoomService
 
     public RoomService(DateTime Solicitud, bool SeCobra)
     {
-        this.
+        this.Solicitud = Solicitud;
+        this.SeCobra = SeCobra;
     }
 }

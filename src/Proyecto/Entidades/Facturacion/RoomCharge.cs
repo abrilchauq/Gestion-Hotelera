@@ -5,12 +5,17 @@ namespace Proyecto.Entidades.Facturacion;
 public class RoomCharge
 {
     public Guid IdRoomCharge { get; private set; }
-    public ServicioHabitacion? ServicioHabitacion { get; private set; }
-    public ServicioLimpieza? ServicioLimpieza { get; private set; }
-    public RegistroServicio? Registros { get; private set; }
+    public DateTime fecha { get; private set; }
+    public int duracion { get; private set; }
 
-    public RoomCharge()
+    public RoomCharge(DateTime fecha, int duracion)
     {
-        this.IdRoomCharge = Guid.NewGuid();
+        this.fecha = fecha;
+        this.duracion = duracion;
+    }
+
+    public void agregarItemFactura()
+    {
+        
     }
 }

@@ -10,4 +10,6 @@ public class Sede
         this.Ubicacion = ubicacion;
         this.Habitaciones = new List<Habitacion>();
     }
+
+    
 }
