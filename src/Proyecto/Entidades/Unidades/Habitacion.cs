@@ -9,9 +9,9 @@ public class Habitacion
     public eTipoHabitacion Tipo { get; private set; }
     public double PrecioReserva { get; private set; }
     public bool Disponibilidad { get; private set; } = false;
-    public RoomKey Llave { get; private set; }
+    public Llave Llave { get; private set; }
 
-    public Habitacion(int numero, eTipoHabitacion tipo, double precioReserva, bool disponibilidad, RoomKey llave)
+    public Habitacion(int numero, eTipoHabitacion tipo, double precioReserva, bool disponibilidad, Llave llave)
     {
         this.Numero = numero;
         this.Tipo = tipo;

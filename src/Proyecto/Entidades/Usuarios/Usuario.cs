@@ -1,19 +1,19 @@
+using Proyecto.Enums;
+
 namespace Proyecto.Entidades.Usuarios;
 
-public abstract class Usuario
+public class Usuario
 {
     public Guid IdUsuario { get; private set; }
-    public string Email { get; private set; }
     public string Nombre { get; private set; }
-    public string Apellido { get; private set; }
-    public string Domicilio { get; private set; }
+    public string Contraseña { get; private set; }
+    public eEstadoUsuario Estado { get; private set; }
 
-    public Usuario(string email, string nombre, string apellido, string domicilio)
+    public Usuario(string nombre, string contraseña, eEstadoUsuario estado)
     {
-        this.Email = email;
         this.Nombre = nombre;
-        this.Apellido = apellido;
-        this.Domicilio = domicilio;
+        this.Contraseña = contraseña;
+        this.Estado = estado;
         this.IdUsuario = Guid.NewGuid();
     }
 }
