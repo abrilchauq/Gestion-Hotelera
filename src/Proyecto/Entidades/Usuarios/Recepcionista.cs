@@ -26,7 +26,13 @@ public class Recepcionista : Persona, IBuscar
     public void CancelarReserva(Guid IdReserva)
     {
         var reserva = Reservas.FirstOrDefault(x => x.IdReserva == IdReserva);
-        reserva!.Cancelar();
+        if (reserva!.Estado == eEstadoReserva.Activa)
+        {
+            if (DateTime.Now <= reserva.FechaReserva)
+            {
+                reserva.Cancelar();
+            }
+        }
     }
 
     public void checkIn(Huesped huesped, Guid idReserva)
@@ -46,12 +52,12 @@ public class Recepcionista : Persona, IBuscar
 
     public void checkOut(Huesped huesped)
     {
-        // var habitacion = Habitaciones.FirstOrDefault(X => X.IdHabitacion == huesped.Habitacion.IdHabitacion);
-        // habitacion!.Liberar();
+
     }
 
     public void buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias)
     {
-        var habitacion = Habitaciones.Where(x => x.estilo == List<Habitacion> Habitaciones);
+        var habitacion = Habitaciones.Where(x => x.estilo == List < Habitacion > Habitaciones);
+
     }
 }
