@@ -1,10 +1,16 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Proyecto.Entidades.Reservacion;
 using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
+[Table("Recepcionista")]
 public class Recepcionista : Persona, IBuscar
 {
+    [Key]
+    [Required]
     public Guid IdRecepcionista { get; private set; }
     public List<Reserva> Reservas { get; private set; }
     public List<Habitacion> Habitaciones { get; private set; }
@@ -52,12 +58,11 @@ public class Recepcionista : Persona, IBuscar
 
     public void checkOut(Huesped huesped)
     {
-
+        huesped.EntregarLlave();
     }
 
-    public void buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias)
+    public List<Habitacion> buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias)
     {
-        var habitacion = Habitaciones.Where(x => x.estilo == List < Habitacion > Habitaciones);
-
+        return Habitaciones.Where(x => x.Tipo == estilo).ToList();
     }
 }

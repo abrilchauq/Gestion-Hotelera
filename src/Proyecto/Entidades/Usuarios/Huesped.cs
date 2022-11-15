@@ -1,12 +1,17 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Proyecto.Entidades.Reservacion;
 using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
-
-public class Huesped : Persona, IBuscar
+[Table("Huesped")]
+public class Huesped : Persona
 {
+    [Key]
+    [Required]
     public Guid idHuesped { get; private set; }
+    [Required]
     public Habitacion Habitacion { get; private set; }
     public Huesped(string email, string nombre, string apellido, string domicilio)
         : base(email, nombre, apellido, domicilio, eTipoUsuario.Huesped)
@@ -18,23 +23,24 @@ public class Huesped : Persona, IBuscar
     {
         Habitacion = habitacion;
     }
-    public void BuscarHabitacion(Habitacion habitacion)
-    {
-        //var  = .FirstOrDefault(x => x.Disponibilidad);
 
-    }
-    public void Reservar(Habitacion habitacion)
+    public void CrearReserva(Recepcionista recepcionista, Reserva reserva)
     {
-
+        recepcionista.CrearReserva(reserva);
     }
 
-    public void buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias)
+    public List<Habitacion> buscarHabitacion(Recepcionista recepcionista, eTipoEstilo estilo, DateTime fechaInicio, int duracionDias)
     {
-        throw new NotImplementedException();
+        return recepcionista.buscarHabitacion(estilo, fechaInicio, duracionDias);
     }
 
-    public void CancelarReserva(Reserva reserva)
+    public void CancelarReserva(Recepcionista recepcionista, Reserva reserva)
     {
+        recepcionista.CancelarReserva(reserva.IdReserva);
+    }
 
+    public void EntregarLlave()
+    {
+        Habitacion.Liberar();
     }
 }

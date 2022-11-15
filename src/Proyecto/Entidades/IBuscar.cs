@@ -1,7 +1,8 @@
+using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades;
 public interface IBuscar
 {
-    void buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias);
+    List<Habitacion> buscarHabitacion(eTipoEstilo estilo, DateTime fechaInicio, int duracionDias);
 }

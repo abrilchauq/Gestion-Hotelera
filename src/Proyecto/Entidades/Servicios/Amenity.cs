@@ -1,14 +1,18 @@
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Proyecto.Entidades.Facturacion;
+
 namespace Proyecto.Entidades.Servicios;
+[Table("Amenity")]
+public class Amenity : RoomCharge
+{
+    [StringLength(30)]
+    public string? nombre { get; private set; }
 
-    public class Amenity
+    public Amenity(string nombre, string descripcion, DateTime fecha, int duracion) : base(fecha, duracion, descripcion)
     {
-        public string? nombre { get; private set; }
-        public string? descripcion { get; private set; }
-
-        public Amenity(string nombre, string descripcion)
-        {
-            this.nombre = nombre;
-            this.descripcion = descripcion;
-        }
+        this.nombre = nombre;
+        this.monto = 0;
     }
+}

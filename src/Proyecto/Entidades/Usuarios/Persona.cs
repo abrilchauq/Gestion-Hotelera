@@ -1,13 +1,20 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
-
+[Table("Persona")]
 public abstract class Persona
 {
+    [StringLength(50)]
     public string Email { get; private set; }
+    [StringLength(50)]
     public string Nombre { get; private set; }
+    [StringLength(50)]
     public string Telefono { get; private set; }
+    [StringLength(50)]
     public string Domicilio { get; private set; }
+    [StringLength(50)]
     public eTipoUsuario Tipo { get; set; }
     public Usuario? Usuario { get; set; }
 

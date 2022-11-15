@@ -1,14 +1,24 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Proyecto.Entidades.Usuarios;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Reservacion;
+[Table("Reserva")]
 public class Reserva
 {
+    [Key]
+    [Required]
     public Guid IdReserva { get; private set; }
+    [Required]
     public eEstadoReserva Estado { get; private set; } = eEstadoReserva.Activa;
+    [Required]
     public DateTime FechaReserva { get; private set; }
+    [Required]
     public DateTime FechaHospedaje { get; private set; }
+    [Required]
     public eTipoEstilo Tipo { get; private set; }
+    [Required]
     public Huesped Huesped { get; private set; }
     public Reserva(eTipoEstilo tipo, DateTime fechaHospedaje, Huesped huesped)
     {
@@ -29,7 +39,7 @@ public class Reserva
         Estado = eEstadoReserva.Completada;
     }
 
-    internal void CheckIn()
+    public void CheckIn()
     {
         Estado = eEstadoReserva.Completada;
     }

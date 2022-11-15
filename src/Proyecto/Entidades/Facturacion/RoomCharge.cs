@@ -1,21 +1,33 @@
-using Proyecto.Entidades.Servicios;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto.Entidades.Facturacion;
-
+[Table("RoomCharge")]
 public class RoomCharge
 {
+    [Key]
+    [Required]
     public Guid IdRoomCharge { get; private set; }
+    [Required]
     public DateTime fecha { get; private set; }
+    [Required]
     public int duracion { get; private set; }
+    [Required]
+    [StringLength(50)]
+    public string descripcion { get; private set; }
+    [Required]
+    public double monto { get; set; }
 
-    public RoomCharge(DateTime fecha, int duracion)
+    public RoomCharge(DateTime fecha, int duracion, string descripcion)
     {
+        this.descripcion = descripcion;
         this.fecha = fecha;
         this.duracion = duracion;
     }
 
-    public void agregarItemFactura()
+    public void agregarItemFactura(Factura factura)
     {
-        
+        var item = new ItemFactura(descripcion, fecha, monto);
+        factura.agregarItemFactura(item);
     }
 }
