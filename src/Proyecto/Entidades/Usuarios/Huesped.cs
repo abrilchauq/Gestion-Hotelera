@@ -8,15 +8,12 @@ namespace Proyecto.Entidades.Usuarios;
 [Table("Huesped")]
 public class Huesped : Persona
 {
-    [Key]
-    [Required]
-    public Guid idHuesped { get; private set; }
     [Required]
     public Habitacion Habitacion { get; private set; }
-    public Huesped(string email, string nombre, string apellido, string domicilio)
-        : base(email, nombre, apellido, domicilio, eTipoUsuario.Huesped)
+    public Huesped(Guid id, string email, string nombre, string apellido, string telefono, string domicilio)
+        : base(id, email, nombre, apellido, telefono, domicilio, eTipoUsuario.Huesped)
     {
-        this.idHuesped = Guid.NewGuid();
+
     }
 
     public void AsignarHabitacion(Habitacion habitacion)

@@ -9,17 +9,13 @@ namespace Proyecto.Entidades.Usuarios;
 [Table("Recepcionista")]
 public class Recepcionista : Persona, IBuscar
 {
-    [Key]
-    [Required]
-    public Guid IdRecepcionista { get; private set; }
     public List<Reserva> Reservas { get; private set; }
     public List<Habitacion> Habitaciones { get; private set; }
     public List<Llave> Llaves { get; private set; }
 
-    public Recepcionista(string email, string nombre, string apellido, string domicilio)
-        : base(email, nombre, apellido, domicilio, eTipoUsuario.Recepcionista)
+    public Recepcionista(Guid id, string email, string nombre, string apellido, string telefono, string domicilio)
+        : base(id, email, nombre, apellido, telefono, domicilio, eTipoUsuario.Recepcionista)
     {
-        this.IdRecepcionista = Guid.NewGuid();
         this.Reservas = new List<Reserva>();
         this.Habitaciones = new List<Habitacion>();
     }

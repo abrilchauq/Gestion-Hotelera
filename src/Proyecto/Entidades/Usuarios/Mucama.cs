@@ -8,13 +8,10 @@ namespace Proyecto.Entidades.Usuarios;
 [Table("Mucama")]
 public class Mucama : Persona
 {
-    [Key]
-    [Required]
-    public Guid IdMucama { get; private set; }
-    public Mucama(string email, string nombre, string apellido, string domicilio)
-        : base(email, nombre, apellido, domicilio, eTipoUsuario.Mucama)
+    public Mucama(Guid id, string email, string nombre, string apellido, string telefono, string domicilio)
+        : base(id, email, nombre, apellido, telefono, domicilio, eTipoUsuario.Mucama)
     {
-        this.IdMucama = Guid.NewGuid();
+
     }
 
     public void AsignarHabitacion(Habitacion habitacion, ServicioLimpieza servicioLimpieza)

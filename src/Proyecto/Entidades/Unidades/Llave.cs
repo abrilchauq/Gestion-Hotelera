@@ -14,20 +14,12 @@ public class Llave
     public string codigo { get; private set; }
     [Required]
     public bool activo { get; set; } = false;
-    [Required]
-    public Habitacion habitacion { get; set; }
-
 
     public Llave(int numero, string codigo)
     {
         this.IdLlave = Guid.NewGuid();
         this.numero = numero;
         this.codigo = codigo;
-    }
-
-    public void AsignarHabitacion(Habitacion habitacion)
-    {
-        this.habitacion = habitacion;
     }
 
     public void Activo()

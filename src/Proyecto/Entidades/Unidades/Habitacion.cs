@@ -20,13 +20,13 @@ public class Habitacion
     public double PrecioReserva { get; private set; }
     [Required]
     public eEstadoHabitacion Estado { get; private set; } = eEstadoHabitacion.NoDisponible;
-    [Required]
+
     public Llave Llave { get; private set; }
     [Required]
     public List<ServicioLimpieza> ServicioLimpiezas { get; set; }
     public List<RoomCharge> RoomCharges { get; set; }
 
-    public Habitacion(int numero, eTipoEstilo tipo, double precioReserva, Llave llave)
+    public Habitacion(int numero, eTipoEstilo tipo, double precioReserva)
     {
         this.Numero = numero;
         this.Tipo = tipo;
@@ -34,7 +34,10 @@ public class Habitacion
         this.IdHabitacion = Guid.NewGuid();
         this.ServicioLimpiezas = new List<ServicioLimpieza>();
         this.RoomCharges = new List<RoomCharge>();
-        this.Llave = llave;
+    }
+    public Habitacion()
+    {
+
     }
 
     public void Liberar()

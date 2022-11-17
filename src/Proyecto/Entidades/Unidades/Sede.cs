@@ -5,6 +5,9 @@ namespace Proyecto.Entidades.Unidades;
 [Table("Sede")]
 public class Sede
 {
+    [Key]
+    [Required]
+    public Guid idSede { get; set; }
     [StringLength(50)]
     public string Nombre { get; set; }
     [Required]
@@ -12,6 +15,7 @@ public class Sede
     public List<Habitacion> Habitaciones { get; set; }
     public Sede(string nombre, string ubicacion)
     {
+        this.idSede = Guid.NewGuid();
         this.Nombre = nombre;
         this.Ubicacion = ubicacion;
         this.Habitaciones = new List<Habitacion>();

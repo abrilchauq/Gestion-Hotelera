@@ -1,4 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Proyecto.Entidades.Facturacion;
+using Proyecto.Entidades.Reservacion;
+using Proyecto.Entidades.Servicios;
+using Proyecto.Entidades.Unidades;
+using Proyecto.Entidades.Usuarios;
 
 namespace Presentacion.Persistencia;
 

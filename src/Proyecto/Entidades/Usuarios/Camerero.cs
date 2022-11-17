@@ -8,13 +8,10 @@ namespace Proyecto.Entidades.Usuarios;
 [Table("Camarero")]
 public class Camarero : Persona
 {
-    [Key]
-    [Required]
-    public Guid IdCamarero { get; private set; }
-    public Camarero(string email, string nombre, string telefono, string domicilio)
-        : base(email, nombre, telefono, domicilio, eTipoUsuario.Camarero)
+    public Camarero(Guid id, string email, string nombre, string apellido, string telefono, string domicilio)
+        : base(id, email, nombre, apellido, telefono, domicilio, eTipoUsuario.Camarero)
     {
-        this.IdCamarero = Guid.NewGuid();
+
     }
 
     public void AgregarRoomCharge(Habitacion habitacion, RoomCharge roomCharge)

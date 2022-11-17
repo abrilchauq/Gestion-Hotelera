@@ -7,6 +7,11 @@ namespace Proyecto.Entidades.Servicios;
 
 public class ServicioLimpieza
 {
+
+    [Key]
+    [Required]
+    public Guid IdServicioLimpieza { get; private set; }
+
     [StringLength(50)]
     public string? descripcion { get; private set; }
     [Required]
@@ -18,6 +23,7 @@ public class ServicioLimpieza
 
     public ServicioLimpieza(string descripcion, DateTime comienzo, int duracion)
     {
+        this.IdServicioLimpieza = Guid.NewGuid();
         this.descripcion = descripcion;
         this.comienzo = comienzo;
         this.duracion = duracion;

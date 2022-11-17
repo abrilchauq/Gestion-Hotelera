@@ -18,7 +18,7 @@ public class Reserva
     public DateTime FechaHospedaje { get; private set; }
     [Required]
     public eTipoEstilo Tipo { get; private set; }
-    [Required]
+
     public Huesped Huesped { get; private set; }
     public Reserva(eTipoEstilo tipo, DateTime fechaHospedaje, Huesped huesped)
     {
@@ -27,6 +27,11 @@ public class Reserva
         this.FechaHospedaje = fechaHospedaje;
         this.IdReserva = Guid.NewGuid();
         this.Huesped = huesped;
+    }
+
+    public Reserva()
+    {
+
     }
 
     public void Cancelar()
