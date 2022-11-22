@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Presentacion.Persistencia.Migraciones
 {
-    public partial class MigracionInicial : Migration
+    public partial class MigracioInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

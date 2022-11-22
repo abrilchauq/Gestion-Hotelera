@@ -5,16 +5,16 @@ using Proyecto.Entidades.Unidades;
 
 namespace Presentacion.Controllers;
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public class SedeController : ControllerBase
-    {
-        private readonly HotelDBContext context;
+[ApiController]
+[Route("api/[controller]")]
+public class SedeController : ControllerBase
+{
+    private readonly HotelDBContext context;
 
-        public SedeController(HotelDBContext context)
-        {
-            this.context = context;
-        }
+    public SedeController(HotelDBContext context)
+    {
+        this.context = context;
+    }
 
     [HttpGet]
     public ActionResult Get()
@@ -29,6 +29,6 @@ namespace Presentacion.Controllers;
         var unaSede = new Sede(nuevaSede.Nombre, nuevaSede.Ubicacion);
         context.Sedes.Add(unaSede);
         context.SaveChanges();
-        return StatusCode(202, unaSede);
+        return StatusCode(StatusCodes.Status201Created, unaSede);
     }
-    }
+}

@@ -29,9 +29,11 @@ public class HabitacionController : ControllerBase
 
     public ActionResult Post(HabitacionViewModel nuevaHabitacion)
     {
-        var unaHabitacion = new Habitacion(nuevaHabitacion.Numero, (eTipoEstilo)nuevaHabitacion.Tipo, nuevaHabitacion.PrecioReserva);
+        var llave = context.Llaves.FirstOrDefault(x => x.codigo == nuevaHabitacion.CodigoLlave);
+        if (llave is null) return BadRequest("CODIGO LLAVE INCORRECTA");
+        var unaHabitacion = new Habitacion(nuevaHabitacion.Numero, (eTipoEstilo)nuevaHabitacion.Tipo, nuevaHabitacion.PrecioReserva, llave);
         context.Habitaciones.Add(unaHabitacion);
         context.SaveChanges();
-        return StatusCode(204, unaHabitacion);
+        return StatusCode(StatusCodes.Status201Created, unaHabitacion);
     }
 }

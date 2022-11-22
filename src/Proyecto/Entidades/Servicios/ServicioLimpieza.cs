@@ -11,22 +11,21 @@ public class ServicioLimpieza
     [Key]
     [Required]
     public Guid IdServicioLimpieza { get; private set; }
-
     [StringLength(50)]
     public string? descripcion { get; private set; }
     [Required]
     public DateTime comienzo { get; private set; }
     [Required]
     public int duracion { get; private set; }
-    [Required]
     public Habitacion? habitacion { get; set; }
 
-    public ServicioLimpieza(string descripcion, DateTime comienzo, int duracion)
+    public ServicioLimpieza(string descripcion, DateTime comienzo, int duracion, Habitacion habitacion)
     {
         this.IdServicioLimpieza = Guid.NewGuid();
         this.descripcion = descripcion;
         this.comienzo = comienzo;
         this.duracion = duracion;
+        this.habitacion = habitacion;
     }
 
     public void asignarHabitacion(Habitacion habitacion)

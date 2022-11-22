@@ -29,6 +29,6 @@ public class HotelController : ControllerBase
         var unHotel = new Hotel(nuevoHotel.Nombre, nuevoHotel.Ubicacion);
         context.Hoteles.Add(unHotel);
         context.SaveChanges();
-        return StatusCode(203, unHotel);
+        return StatusCode(StatusCodes.Status201Created, unHotel);
     }
 }
