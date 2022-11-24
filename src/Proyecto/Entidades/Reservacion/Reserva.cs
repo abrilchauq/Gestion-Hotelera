@@ -18,7 +18,6 @@ public class Reserva
     public DateTime FechaHospedaje { get; private set; }
     [Required]
     public eTipoEstilo Tipo { get; private set; }
-
     public Huesped Huesped { get; private set; }
     public Reserva(eTipoEstilo tipo, DateTime fechaHospedaje, Huesped huesped)
     {

@@ -26,8 +26,9 @@ public class ServicioLimpiezaController : ControllerBase
     [HttpPost]
     public ActionResult Post(ServicioLimpiezaViewModel nuevoServicioLimpieza)
     {
-        var habitacion = context.Habitaciones.FirstOrDefault(h => h.IdHabitacion);
-        var unServicioLimpieza = new ServicioLimpieza(nuevoServicioLimpieza.descripcion, nuevoServicioLimpieza.comienzo, nuevoServicioLimpieza.duracion);
+        var habitacion = context.Habitaciones.FirstOrDefault(h => h.IdHabitacion == nuevoServicioLimpieza.idHabitacion);
+        if (habitacion is null) return BadRequest("Habitacion no encontrada");
+        var unServicioLimpieza = new ServicioLimpieza(nuevoServicioLimpieza.descripcion, nuevoServicioLimpieza.comienzo, nuevoServicioLimpieza.duracion, habitacion);
         context.ServicioLimpiezas.Add(unServicioLimpieza);
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unServicioLimpieza);

@@ -17,8 +17,11 @@ public class Factura
     public double monto { get; private set; }
     [Required]
     public List<ItemFactura> Items { get; private set; }
-    public Factura(Guid IdFactura)
+    public Factura(int numero, DateTime fechaHora, double monto)
     {
+        this.numero = numero;
+        this.fechaHora = fechaHora;
+        this.monto = monto;
         this.IdFactura = Guid.NewGuid();
         this.Items = new List<ItemFactura>();
     }

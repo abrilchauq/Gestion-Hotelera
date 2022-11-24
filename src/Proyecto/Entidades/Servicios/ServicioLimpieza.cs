@@ -26,6 +26,12 @@ public class ServicioLimpieza
         this.comienzo = comienzo;
         this.duracion = duracion;
         this.habitacion = habitacion;
+
+    }
+
+    public ServicioLimpieza()
+    {
+
     }
 
     public void asignarHabitacion(Habitacion habitacion)
