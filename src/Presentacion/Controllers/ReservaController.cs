@@ -27,8 +27,8 @@ public class ReservaController : ControllerBase
     [HttpPost]
     public ActionResult Post(ReservaViewModel nuevaReserva)
     {
-        var reserva = context.Reservas.FirstOrDefault(r => r.IdReserva == nuevaReserva.IdReserva);
-        if (reserva is null) return BadRequest("Reserva no existe");
+        var huesped = context.Huespedes.FirstOrDefault(r => r.IdHuesped == nuevaReserva.IdHuesped);
+        if (huesped is null) return BadRequest("Reserva no existe");
         var unaReserva = new Reserva((eTipoEstilo)nuevaReserva.Tipo, nuevaReserva.FechaHospedaje, huesped);
         context.Reservas.Add(unaReserva);
         context.SaveChanges();
