@@ -9,21 +9,20 @@ public abstract class Persona
     [Key]
     [Required]
     public Guid id { get; protected set; }
-
     [StringLength(50)]
     public string Email { get; protected set; }
     [StringLength(50)]
     public string Nombre { get; protected set; }
     [StringLength(50)]
+    public string apellido { get; protected set; }
+    [StringLength(50)]
     public string Telefono { get; protected set; }
     [StringLength(50)]
     public string Domicilio { get; protected set; }
-    [StringLength(50)]
-    public string apellido { get; protected set; }
     public eTipoUsuario Tipo { get; set; }
     public Usuario? Usuario { get; set; }
 
-    public Persona(Guid id, string email, string nombre, string apellido, string telefono, string domicilio, eTipoUsuario tipo)
+    public Persona(string email, string nombre, string apellido, string telefono, string domicilio, eTipoUsuario tipo)
     {
         this.id = Guid.NewGuid();
         this.Email = email;

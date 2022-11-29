@@ -8,8 +8,8 @@ namespace Proyecto.Entidades.Usuarios;
 [Table("Camarero")]
 public class Camarero : Persona
 {
-    public Camarero(Guid id, string email, string nombre, string apellido, string telefono, string domicilio)
-        : base(id, email, nombre, apellido, telefono, domicilio, eTipoUsuario.Camarero)
+    public Camarero(string email, string nombre, string apellido, string telefono, string domicilio)
+        : base(email, nombre, apellido, telefono, domicilio, eTipoUsuario.Camarero)
     {
 
     }

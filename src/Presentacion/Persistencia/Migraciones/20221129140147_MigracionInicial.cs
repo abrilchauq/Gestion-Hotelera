@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Presentacion.Persistencia.Migraciones
 {
-    public partial class MigracioInicial : Migration
+    public partial class MigracionInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -113,11 +113,11 @@ namespace Presentacion.Persistencia.Migraciones
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Nombre = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    apellido = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Telefono = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Domicilio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    apellido = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Tipo = table.Column<int>(type: "int", nullable: false),
                     UsuarioIdUsuario = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
@@ -301,17 +301,16 @@ namespace Presentacion.Persistencia.Migraciones
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     comienzo = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     duracion = table.Column<int>(type: "int", nullable: false),
-                    habitacionIdHabitacion = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    HabitacionIdHabitacion = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServicioLimpieza", x => x.IdServicioLimpieza);
                     table.ForeignKey(
-                        name: "FK_ServicioLimpieza_Habitacion_habitacionIdHabitacion",
-                        column: x => x.habitacionIdHabitacion,
+                        name: "FK_ServicioLimpieza_Habitacion_HabitacionIdHabitacion",
+                        column: x => x.HabitacionIdHabitacion,
                         principalTable: "Habitacion",
-                        principalColumn: "IdHabitacion",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdHabitacion");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -458,9 +457,9 @@ namespace Presentacion.Persistencia.Migraciones
                 column: "HotelIdHotel");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServicioLimpieza_habitacionIdHabitacion",
+                name: "IX_ServicioLimpieza_HabitacionIdHabitacion",
                 table: "ServicioLimpieza",
-                column: "habitacionIdHabitacion");
+                column: "HabitacionIdHabitacion");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

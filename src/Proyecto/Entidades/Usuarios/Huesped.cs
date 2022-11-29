@@ -9,16 +9,16 @@ namespace Proyecto.Entidades.Usuarios;
 public class Huesped : Persona
 {
     [Required]
-    public Habitacion Habitacion { get; private set; }
-    public Huesped(Guid id, string email, string nombre, string apellido, string telefono, string domicilio)
-        : base(id, email, nombre, apellido, telefono, domicilio, eTipoUsuario.Huesped)
+    public Habitacion Habitacion { get; set; }
+    public Huesped(string email, string nombre, string apellido, string telefono, string domicilio, Habitacion habitacion)
+        : base(email, nombre, apellido, telefono, domicilio, eTipoUsuario.Huesped)
     {
-
+        this.Habitacion = habitacion;
     }
 
-    public void AsignarHabitacion(Habitacion habitacion)
+    public Huesped(string email, string nombre, string apellido, string telefono, string domicilio)
+        : base(email, nombre, apellido, telefono, domicilio, eTipoUsuario.Huesped)
     {
-        Habitacion = habitacion;
     }
 
     public void CrearReserva(Recepcionista recepcionista, Reserva reserva)

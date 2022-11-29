@@ -11,8 +11,8 @@ using Presentacion.Persistencia;
 namespace Presentacion.Persistencia.Migraciones
 {
     [DbContext(typeof(HotelDBContext))]
-    [Migration("20221122140222_MigracioInicial")]
-    partial class MigracioInicial
+    [Migration("20221129140147_MigracionInicial")]
+    partial class MigracionInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -137,6 +137,9 @@ namespace Presentacion.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid?>("HabitacionIdHabitacion")
+                        .HasColumnType("char(36)");
+
                     b.Property<DateTime>("comienzo")
                         .HasColumnType("datetime(6)");
 
@@ -147,12 +150,9 @@ namespace Presentacion.Persistencia.Migraciones
                     b.Property<int>("duracion")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("habitacionIdHabitacion")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("IdServicioLimpieza");
 
-                    b.HasIndex("habitacionIdHabitacion");
+                    b.HasIndex("HabitacionIdHabitacion");
 
                     b.ToTable("ServicioLimpieza");
                 });
@@ -429,13 +429,9 @@ namespace Presentacion.Persistencia.Migraciones
 
             modelBuilder.Entity("Proyecto.Entidades.Servicios.ServicioLimpieza", b =>
                 {
-                    b.HasOne("Proyecto.Entidades.Unidades.Habitacion", "habitacion")
+                    b.HasOne("Proyecto.Entidades.Unidades.Habitacion", null)
                         .WithMany("ServicioLimpiezas")
-                        .HasForeignKey("habitacionIdHabitacion")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("habitacion");
+                        .HasForeignKey("HabitacionIdHabitacion");
                 });
 
             modelBuilder.Entity("Proyecto.Entidades.Unidades.Habitacion", b =>

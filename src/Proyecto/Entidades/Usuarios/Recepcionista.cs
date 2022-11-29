@@ -13,8 +13,8 @@ public class Recepcionista : Persona, IBuscar
     public List<Habitacion> Habitaciones { get; private set; }
     public List<Llave> Llaves { get; private set; }
 
-    public Recepcionista(Guid id, string email, string nombre, string apellido, string telefono, string domicilio)
-        : base(id, email, nombre, apellido, telefono, domicilio, eTipoUsuario.Recepcionista)
+    public Recepcionista(string email, string nombre, string apellido, string telefono, string domicilio)
+        : base(email, nombre, apellido, telefono, domicilio, eTipoUsuario.Recepcionista)
     {
         this.Reservas = new List<Reserva>();
         this.Habitaciones = new List<Habitacion>();
