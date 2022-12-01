@@ -30,4 +30,11 @@ public class Factura
     {
         Items.Add(item);
     }
+
+    public void Actualizar(int numero, DateTime fechaHora, double monto)
+    {
+        this.numero = numero;
+        this.fechaHora = fechaHora;
+        this.monto = monto;
+    }
 }

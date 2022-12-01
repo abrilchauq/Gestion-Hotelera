@@ -31,4 +31,23 @@ public class FacturaController : ControllerBase
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unaFactura);
     }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] FacturaViewModel factura, Guid IdFactura)
+    {
+        var facturaConCambios = context.Facturas.FirstOrDefault(f => f.IdFactura == IdFactura);
+
+        facturaConCambios.Actualizar(factura.numero, factura.fechaHora, factura.monto);
+        context.SaveChanges();
+        return Ok(facturaConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid IdFactura)
+    {
+        var facturaABorrar = context.Facturas.FirstOrDefault(r => r.IdFactura == IdFactura);
+        context.Facturas.Remove(facturaABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }

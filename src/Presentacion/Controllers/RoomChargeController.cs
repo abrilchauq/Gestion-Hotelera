@@ -33,4 +33,23 @@ public class RoomChargeController : ControllerBase
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unRoomCharge);
     }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] RoomChargeViewModel roomCharge, Guid IdRoomCharge)
+    {
+        var roomChargeConCambios = context.RoomCharges.FirstOrDefault(r=> r.IdRoomCharge == IdRoomCharge);
+
+        roomChargeConCambios.Actualizar(roomCharge.fecha, roomCharge.duracion, roomCharge.descripcion, roomCharge.monto);
+        context.SaveChanges();
+        return Ok(roomChargeConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid IdRoomCharge)
+    {
+        var roomChargeABorrar = context.RoomCharges.FirstOrDefault(r => r.IdRoomCharge == IdRoomCharge);
+        context.RoomCharges.Remove(roomChargeABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }

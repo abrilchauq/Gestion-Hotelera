@@ -30,4 +30,12 @@ public class RoomCharge
         var item = new ItemFactura(descripcion, fecha, monto);
         factura.agregarItemFactura(item);
     }
+
+    public void Actualizar(DateTime fecha, int duracion, string descripcion, double monto)
+    {
+        this.fecha = fecha;
+        this.duracion = duracion;
+        this.descripcion = descripcion;
+        this.monto = monto;
+    }
 }
