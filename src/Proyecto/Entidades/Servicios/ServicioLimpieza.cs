@@ -30,6 +30,13 @@ public class ServicioLimpieza
     {
 
     }
+    
+    public void Actualizar(string descripcion, DateTime comienzo, int duracion)
+    {
+        this.descripcion = descripcion;
+        this.comienzo = comienzo;
+        this.duracion = duracion;
+    }
 }
 
 

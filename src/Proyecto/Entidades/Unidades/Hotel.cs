@@ -23,6 +23,12 @@ public class Hotel
         this.IdHotel = Guid.NewGuid();
     }
 
+    public void Actualizar(string Nombre, string Ubicacion)
+    {
+        this.Nombre = Nombre;
+        this.Ubicacion = Ubicacion; 
+    }
+
     public void AgregarSede(Sede sede)
     {
         this.Sedes.Add(sede);

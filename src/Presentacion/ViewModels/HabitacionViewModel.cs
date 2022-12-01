@@ -1,10 +1,14 @@
 
 namespace Presentacion.ViewModels;
 
-public class HabitacionViewModel
+public class HabitacionViewModel : HabitacionModificarViewModel
 {
-    public int Numero { get; set; }
-    public int Tipo { get; set; }
-    public double PrecioReserva { get; set; }
     public string CodigoLlave { get; set; }
+}
+
+public class HabitacionModificarViewModel
+{
+    public int numero { get; set; }
+    public int tipo { get; set; }
+    public double precioReserva { get; set; }
 }

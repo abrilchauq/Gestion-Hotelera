@@ -52,4 +52,11 @@ public class Habitacion
     }
 
     public void agregarRoomCharge(RoomCharge roomCharge) => RoomCharges.Add(roomCharge);
+
+    public void Actualizar(int numero, int tipo, double precioReserva)
+    {
+        this.Numero = numero;
+        this.Tipo = (eTipoEstilo)tipo;
+        this.PrecioReserva = precioReserva;
+    }
 }

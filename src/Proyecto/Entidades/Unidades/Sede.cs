@@ -20,4 +20,10 @@ public class Sede
         this.Ubicacion = ubicacion;
         this.Habitaciones = new List<Habitacion>();
     }
+
+    public void Actualizar(string Nombre, string Ubicacion)
+    {
+        this.Nombre = Nombre;
+        this.Ubicacion = Ubicacion;
+    }
 }

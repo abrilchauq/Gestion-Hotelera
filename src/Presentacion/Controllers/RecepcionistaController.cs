@@ -11,7 +11,7 @@ public class RecepcionistaController : ControllerBase
 {
     private readonly HotelDBContext context;
 
-    private RecepcionistaController(HotelDBContext context)
+    public RecepcionistaController(HotelDBContext context)
     {
         this.context = context;
     }

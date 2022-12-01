@@ -31,4 +31,23 @@ public class HotelController : ControllerBase
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unHotel);
     }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] HotelViewModel hotel, Guid IdHotel)
+    {
+        var hotelConCambios = context.Hoteles.FirstOrDefault(h => h.IdHotel == IdHotel);
+
+        hotelConCambios.Actualizar(hotel.Nombre, hotel.Ubicacion);
+        context.SaveChanges();
+        return Ok(hotelConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid IdHotel)
+    {
+        var hotelABrorrar = context.Hoteles.FirstOrDefault(h => h.IdHotel == IdHotel);
+        context.Hoteles.Remove(hotelABrorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }

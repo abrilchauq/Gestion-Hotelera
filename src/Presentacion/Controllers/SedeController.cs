@@ -31,4 +31,23 @@ public class SedeController : ControllerBase
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unaSede);
     }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] SedeViewModel sede, Guid idSede)
+    {
+        var sedeConCambios = context.Sedes.FirstOrDefault(s => s.idSede == idSede);
+
+        sedeConCambios.Actualizar(sede.Nombre, sede.Ubicacion);
+        context.SaveChanges();
+        return Ok(sedeConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid idSede)
+    {
+        var sedeABorrar = context.Sedes.FirstOrDefault(h => h.idSede == idSede);
+        context.Sedes.Remove(sedeABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }

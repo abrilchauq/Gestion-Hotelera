@@ -31,4 +31,23 @@ public class LlaveController : ControllerBase
         context.SaveChanges();
         return StatusCode(201, unaLlave);
     }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] LlaveViewModel llave, Guid IdLlave)
+    {
+        var llaveConCambios = context.Llaves.FirstOrDefault(x => x.IdLlave == IdLlave);
+
+        llaveConCambios.Actualizar(llave.numero, llave.codigo);
+        context.SaveChanges();
+        return Ok(llaveConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid IdLlave)
+    {
+        var llaveABorrar = context.Llaves.FirstOrDefault(l => l.IdLlave == IdLlave);
+        context.Llaves.Remove(llaveABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }

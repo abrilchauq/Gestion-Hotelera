@@ -31,4 +31,25 @@ public class ServicioLimpiezaController : ControllerBase
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unServicioLimpieza);
     }
+
+    [HttpPut]
+
+    public ActionResult Put([FromBody] ServicioLimpiezaViewModel servicioLimpieza, Guid IdServicioLimpieza)
+    {
+        var servicioLimpiezaConCambios = context.ServicioLimpiezas.FirstOrDefault(s => s.IdServicioLimpieza == IdServicioLimpieza);
+
+        servicioLimpiezaConCambios.Actualizar(servicioLimpieza.descripcion, servicioLimpieza.comienzo, servicioLimpieza.duracion);
+        context.SaveChanges();
+        return Ok(servicioLimpiezaConCambios);
+    }
+
+    [HttpDelete]
+
+    public ActionResult Delete(Guid IdServicioLimpieza)
+    {
+        var servicioLimpiezaBorrar = context.ServicioLimpiezas.FirstOrDefault(s => s.IdServicioLimpieza == IdServicioLimpieza);
+        context.ServicioLimpiezas.Remove(servicioLimpiezaBorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }

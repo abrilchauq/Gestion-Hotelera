@@ -32,4 +32,25 @@ public class UsuarioController : ControllerBase
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unUsuario); 
     }
+
+    [HttpPut]
+
+    public ActionResult Put([FromBody] UsuarioViewModel usuario, Guid IdUsuario)
+    {
+        var usuarioConCambios = context.Usuarios.FirstOrDefault(u => u.IdUsuario == IdUsuario);
+        
+        usuarioConCambios.Actualizar(usuario.Nombre, usuario.Contraseña);
+        context.SaveChanges();
+        return Ok(usuarioConCambios);
+    }
+
+    [HttpDelete]
+
+    public ActionResult Delete(Guid IdUsuario)
+    {
+        var usuarioABorrar = context.Usuarios.FirstOrDefault(u => u.IdUsuario == IdUsuario);
+        context.Usuarios.Remove(usuarioABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }

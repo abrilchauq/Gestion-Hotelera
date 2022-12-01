@@ -31,9 +31,28 @@ public class HabitacionController : ControllerBase
     {
         var llave = context.Llaves.FirstOrDefault(x => x.codigo == nuevaHabitacion.CodigoLlave);
         if (llave is null) return BadRequest("CODIGO LLAVE INCORRECTA");
-        var unaHabitacion = new Habitacion(nuevaHabitacion.Numero, (eTipoEstilo)nuevaHabitacion.Tipo, nuevaHabitacion.PrecioReserva, llave);
+        var unaHabitacion = new Habitacion(nuevaHabitacion.numero, (eTipoEstilo)nuevaHabitacion.tipo, nuevaHabitacion.precioReserva, llave);
         context.Habitaciones.Add(unaHabitacion);
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unaHabitacion);
+    }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] HabitacionModificarViewModel habitacion, Guid IdHabitacion)
+    {
+        var habitacionConCambios = context.Habitaciones.FirstOrDefault(h => h.IdHabitacion == IdHabitacion);
+
+        habitacionConCambios.Actualizar(habitacion.numero, habitacion.tipo, habitacion.precioReserva);
+        context.SaveChanges();
+        return Ok(habitacionConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid IdHabitacion)
+    {
+        var habitacionABorrar = context.Habitaciones.FirstOrDefault(h => h.IdHabitacion == IdHabitacion);
+        context.Habitaciones.Remove(habitacionABorrar);
+        context.SaveChanges();
+        return Ok();
     }
 }

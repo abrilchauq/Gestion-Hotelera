@@ -23,4 +23,10 @@ public class Usuario
         this.Estado = estado;
         this.IdUsuario = Guid.NewGuid();
     }
+
+    public void Actualizar(string Nombre, string Contraseña)
+    {
+        this.Nombre = Nombre;
+        this.Contraseña = Contraseña;
+    }
 }

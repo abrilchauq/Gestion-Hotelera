@@ -22,6 +22,11 @@ public class Llave
         this.codigo = codigo;
     }
 
+    public void Actualizar(int numero, string codigo)
+    {
+        this.numero = numero;
+        this.codigo = codigo;
+    }
     public void Activo()
     {
         if (activo == false)
