@@ -27,16 +27,31 @@ public class RoomServiceController : ControllerBase
 
     public ActionResult Post(RoomServiceViewModel nuevoRoomService)
     {
-        var unRoomService = new RoomService(nuevoRoomService.Solicitud, nuevoRoomService.SeCobra, nuevoRoomService.fecha, nuevoRoomService.duracion, nuevoRoomService.descripcion);
+        var unRoomService = new RoomService(nuevoRoomService.Solicitud, nuevoRoomService.fecha, nuevoRoomService.duracion, nuevoRoomService.descripcion);
         context.RoomServices.Add(unRoomService);
         context.SaveChanges();
-        return Created($"/api/roomService/{unRoomService.IdRoomCharge}", unRoomService);
+        return Created($"/api/roomService/{unRoomService.Id}", unRoomService);
     }
 
     [HttpPut]
 
     public ActionResult Put([FromBody] RoomServiceViewModel roomService, Guid id)
     {
-        var RoomServiceConCambios.Actualizar()
+        var RoomServiceConCambios = context.RoomServices.FirstOrDefault(r => r.Id == id );
+
+        RoomServiceConCambios.Actualizar(roomService.Solicitud,roomService.fecha,roomService.duracion,roomService.descripcion);
+        context.SaveChanges();
+        return Ok(RoomServiceConCambios);
+
+    }
+
+    [HttpDelete]
+
+    public ActionResult Delete(Guid IdRoomService)
+    {
+        var roomServiceBorrar = context.RoomServices.FirstOrDefault(r => r.Id == IdRoomService);
+        context.RoomServices.Remove(roomServiceBorrar);
+        context.SaveChanges();
+        return Ok();
     }
 }

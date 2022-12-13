@@ -11,18 +11,19 @@ public class RoomService : RoomCharge
     [Required]
     public bool SeCobra { get; private set; } = false;
 
-    public RoomService(DateTime Solicitud, bool SeCobra, DateTime fecha, int duracion, string descripcion)
+    public RoomService(DateTime Solicitud, DateTime fecha, int duracion, string descripcion)
         : base(fecha, duracion, descripcion)
     {
         this.Solicitud = Solicitud;
-        this.SeCobra = SeCobra;
+        this.SeCobra = true;
         this.monto = 100;
     }
 
-    public void Actualizar(DateTime Solicitud, bool SeCobra, DateTime fecha, int duracion, string descripcion)
+    public void Actualizar(DateTime Solicitud, DateTime fecha, int duracion, string descripcion)
     {
         this.Solicitud = Solicitud;
-        this.SeCobra = SeCobra;
+        this.duracion = duracion;
+        this.descripcion = descripcion;
 
     }
 }

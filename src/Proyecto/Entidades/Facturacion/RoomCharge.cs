@@ -7,7 +7,7 @@ public class RoomCharge
 {
     [Key]
     [Required]
-    public Guid IdRoomCharge { get; protected set; }
+    public Guid Id { get; protected set; }
     [Required]
     public DateTime fecha { get; protected set; }
     [Required]

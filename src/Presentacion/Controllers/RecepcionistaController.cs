@@ -37,7 +37,7 @@ public class RecepcionistaController : ControllerBase
 
     public ActionResult Put([FromBody] RecepcionistaViewModel recepcionista, Guid idRecepcionista)
     {
-        var RecepcionistaConCambios = context.Recepcionistas.FirstOrDefault(r => r.id == id);
+        var RecepcionistaConCambios = context.Recepcionistas.FirstOrDefault(r => r.id == idRecepcionista);
 
         RecepcionistaConCambios.Actualizar(recepcionista.Email, recepcionista.Nombre, recepcionista.apellido, recepcionista.Telefono, recepcionista.Domicilio);
         context.SaveChanges();
