@@ -15,4 +15,13 @@ public class Amenity : RoomCharge
         this.nombre = nombre;
         this.monto = 0;
     }
+
+    public void Actualizar(string Nombre, string descripcion, DateTime fecha, int duracion)
+    {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.duracion = duracion;
+
+    }
 }

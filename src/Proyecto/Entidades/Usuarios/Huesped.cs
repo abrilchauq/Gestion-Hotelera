@@ -40,4 +40,12 @@ public class Huesped : Persona
     {
         Habitacion.Liberar();
     }
+
+    public void Actualizar(string Email, string Nombre, string apellido, string telefono, string domicilio, Habitacion habitacion)
+    {
+        this.Email = Email;
+        this.Nombre = Nombre;
+        this.apellido = apellido;
+        this.Domicilio = Domicilio;
+    }
 }

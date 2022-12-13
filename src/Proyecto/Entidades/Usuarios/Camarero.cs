@@ -18,4 +18,12 @@ public class Camarero : Persona
     {
         habitacion.agregarRoomCharge(roomCharge);
     }
+
+    public void Actualizar(string email, string nombre, string apellido, string telefono, string domicilio)
+    {
+        this.Email = Email;
+        this.Nombre = Nombre;
+        this.apellido = apellido;
+        this.Domicilio = Domicilio;
+    }
 }

@@ -33,4 +33,25 @@ public class AmenityController : ControllerBase
         context.SaveChanges();
         return Created($"/api/amenity/{unAmenity.IdRoomCharge}", unAmenity);
     }
+
+    [HttpPut]
+
+    public ActionResult Put([FromBody] AmenityViewModel amenity, Guid IdRoomCharge)
+    {
+        var amenityConCambios = context.Amenities.FirstOrDefault(x => x.IdRoomCharge == IdRoomCharge);
+        amenityConCambios.Actualizar(amenity.nombre, amenity.descripcion, amenity.fecha, amenity.duracion);
+        context.SaveChanges();
+        return Ok(amenityConCambios);
+
+    }
+
+    [HttpDelete]
+
+    public ActionResult Delete(Guid IdRoomCharge)
+    {
+        var amenityBorrar = context.Amenities.FirstOrDefault(a => a.IdRoomCharge == IdRoomCharge);
+        context.Amenities.Remove(amenityBorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }
