@@ -33,6 +33,13 @@ public class Reserva
 
     }
 
+    public void Actualizar(DateTime FechaReserva, DateTime FechaHospedaje, int Tipo)
+    {
+        this.FechaReserva = FechaReserva;
+        this.FechaHospedaje = FechaHospedaje;
+        this.Tipo = (eTipoEstilo)Tipo;
+    }
+
     public void Cancelar()
     {
         Estado = eEstadoReserva.Cancelada;

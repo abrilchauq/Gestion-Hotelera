@@ -9,4 +9,11 @@ public class KitchenService : RoomCharge
     {
         this.monto = 1000;
     }
+
+    public void Actualizar(string descripcion, DateTime fecha, int duracion)
+    {
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.duracion = duracion;
+    }
 }

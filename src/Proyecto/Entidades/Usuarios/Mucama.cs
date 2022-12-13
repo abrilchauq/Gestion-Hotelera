@@ -18,4 +18,13 @@ public class Mucama : Persona
     {
         habitacion.AgregarServicioLimpieza(servicioLimpieza);
     }
+
+    public void Actualizar(string email, string nombre, string apellido, string telefono, string domicilio)
+    {
+        this.Email = email;
+        this.Nombre = nombre;
+        this.apellido = apellido;
+        this.Telefono = telefono;
+        this.Domicilio = domicilio;
+    }
 }
