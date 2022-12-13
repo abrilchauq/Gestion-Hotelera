@@ -28,13 +28,13 @@ public class KitchenServiceController : ControllerBase
         var unkitchenService = new KitchenService(nuevoKitechenService.descripcion, nuevoKitechenService.fecha, nuevoKitechenService.duracion);
         context.KitchenServices.Add(unkitchenService);
         context.SaveChanges();
-        return Created($"/api/kitchenService/{unkitchenService.IdRoomCharge}", unkitchenService);
+        return Created($"/api/kitchenService/{unkitchenService.Id}", unkitchenService);
     }
 
     [HttpPut]
     public ActionResult Put([FromBody] KitchenServiceViewModel kitchenService, Guid IdRoomCharge)
     {
-        var kitchenServiceConCambios = context.KitchenServices.FirstOrDefault(k => k.IdRoomCharge == IdRoomCharge);
+        var kitchenServiceConCambios = context.KitchenServices.FirstOrDefault(k => k.Id == IdRoomCharge);
 
         kitchenServiceConCambios.Actualizar(kitchenService.descripcion, kitchenService.fecha, kitchenService.duracion);
         context.SaveChanges();
@@ -44,7 +44,7 @@ public class KitchenServiceController : ControllerBase
     [HttpDelete]
     public ActionResult Delete(Guid IdRoomCharge)
     {
-        var kitchenServiceABorrar = context.KitchenServices.FirstOrDefault(k => k.IdRoomCharge == IdRoomCharge);
+        var kitchenServiceABorrar = context.KitchenServices.FirstOrDefault(k => k.Id == IdRoomCharge);
         context.KitchenServices.Remove(kitchenServiceABorrar);
         context.SaveChanges();
         return Ok();

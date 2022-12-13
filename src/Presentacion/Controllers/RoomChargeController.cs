@@ -37,7 +37,7 @@ public class RoomChargeController : ControllerBase
     [HttpPut]
     public ActionResult Put([FromBody] RoomChargeViewModel roomCharge, Guid IdRoomCharge)
     {
-        var roomChargeConCambios = context.RoomCharges.FirstOrDefault(r=> r.IdRoomCharge == IdRoomCharge);
+        var roomChargeConCambios = context.RoomCharges.FirstOrDefault(r => r.Id == IdRoomCharge);
 
         roomChargeConCambios.Actualizar(roomCharge.fecha, roomCharge.duracion, roomCharge.descripcion, roomCharge.monto);
         context.SaveChanges();
@@ -47,7 +47,7 @@ public class RoomChargeController : ControllerBase
     [HttpDelete]
     public ActionResult Delete(Guid IdRoomCharge)
     {
-        var roomChargeABorrar = context.RoomCharges.FirstOrDefault(r => r.IdRoomCharge == IdRoomCharge);
+        var roomChargeABorrar = context.RoomCharges.FirstOrDefault(r => r.Id == IdRoomCharge);
         context.RoomCharges.Remove(roomChargeABorrar);
         context.SaveChanges();
         return Ok();

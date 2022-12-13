@@ -31,14 +31,14 @@ public class AmenityController : ControllerBase
         var unAmenity = new Amenity(nuevoAmenity.nombre, nuevoAmenity.descripcion, nuevoAmenity.fecha, nuevoAmenity.duracion);
         context.Amenities.Add(unAmenity);
         context.SaveChanges();
-        return Created($"/api/amenity/{unAmenity.IdRoomCharge}", unAmenity);
+        return Created($"/api/amenity/{unAmenity.Id}", unAmenity);
     }
 
     [HttpPut]
 
     public ActionResult Put([FromBody] AmenityViewModel amenity, Guid IdRoomCharge)
     {
-        var amenityConCambios = context.Amenities.FirstOrDefault(x => x.IdRoomCharge == IdRoomCharge);
+        var amenityConCambios = context.Amenities.FirstOrDefault(x => x.Id == IdRoomCharge);
         amenityConCambios.Actualizar(amenity.nombre, amenity.descripcion, amenity.fecha, amenity.duracion);
         context.SaveChanges();
         return Ok(amenityConCambios);
@@ -49,7 +49,7 @@ public class AmenityController : ControllerBase
 
     public ActionResult Delete(Guid IdRoomCharge)
     {
-        var amenityBorrar = context.Amenities.FirstOrDefault(a => a.IdRoomCharge == IdRoomCharge);
+        var amenityBorrar = context.Amenities.FirstOrDefault(a => a.Id == IdRoomCharge);
         context.Amenities.Remove(amenityBorrar);
         context.SaveChanges();
         return Ok();
