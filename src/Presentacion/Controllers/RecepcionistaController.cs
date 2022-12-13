@@ -30,6 +30,7 @@ public class RecepcionistaController : ControllerBase
     {
         var unRecepcionista = new Recepcionista(nuevoRecepcionista.Email, nuevoRecepcionista.Nombre, nuevoRecepcionista.apellido, nuevoRecepcionista.Telefono, nuevoRecepcionista.Domicilio);
         context.Recepcionistas.Add(unRecepcionista);
+        context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unRecepcionista);
     }
 
