@@ -40,8 +40,8 @@ public class HuespedController : ControllerBase
     public ActionResult Put([FromBody] HuespedViewModel huesped, Guid idHuesped)
     {
         var huespedConCambios = context.Huespedes.FirstOrDefault(x => x.id == idHuesped);
-        var Huesped = context.Huespedes.FirstOrDefault(X => X.IdHabitacion == huesped.idHabitacion);
-        huespedConCambios.Actualizar(huesped.Email, huesped.Nombre, huesped.apellido, huesped.Telefono, huesped.Domicilio, huesped.idHabitacion);
+        var habitacion = context.Habitaciones.FirstOrDefault(X => X.IdHabitacion == huesped.idHabitacion);
+        huespedConCambios.Actualizar(huesped.Email, huesped.Nombre, huesped.apellido, huesped.Telefono, huesped.Domicilio, habitacion);
         context.SaveChanges();
         return Ok(huespedConCambios);
     }
