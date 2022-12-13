@@ -61,4 +61,12 @@ public class Recepcionista : Persona, IBuscar
     {
         return Habitaciones.Where(x => x.Tipo == estilo).ToList();
     }
+
+    public void Actualizar(string email, string nombre, string apellido, string telefono, string domicilio)
+    {
+        this.Email = email;
+        this.Nombre = nombre;
+        this.Telefono = Telefono;
+        this.Domicilio = Domicilio;
+    }
 }

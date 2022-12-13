@@ -7,14 +7,14 @@ public class RoomCharge
 {
     [Key]
     [Required]
-    public Guid IdRoomCharge { get; private set; }
+    public Guid IdRoomCharge { get; protected set; }
     [Required]
-    public DateTime fecha { get; private set; }
+    public DateTime fecha { get; protected set; }
     [Required]
-    public int duracion { get; private set; }
+    public int duracion { get; protected set; }
     [Required]
     [StringLength(50)]
-    public string descripcion { get; private set; }
+    public string descripcion { get; protected set; }
     [Required]
     public double monto { get; set; }
 

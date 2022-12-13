@@ -34,4 +34,24 @@ public class ReservaController : ControllerBase
         context.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, unaReserva);
     }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] ReservaViewModel reserva, Guid IdReserva)
+    {
+        var reservaConCambios = context.Reservas.FirstOrDefault(r => r.IdReserva == IdReserva);
+
+        reservaConCambios.Actualizar(reserva.FechaReserva, reserva.FechaHospedaje, reserva.Tipo);
+        context.SaveChanges();
+        return Ok(reservaConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid IdReserva)
+    {
+        var reservaABorrar = context.Reservas.FirstOrDefault(r => r.IdReserva == IdReserva);
+        context.Reservas.Remove(reservaABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
+
 }

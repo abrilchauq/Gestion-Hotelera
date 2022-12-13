@@ -33,4 +33,23 @@ public class MucamaController : ControllerBase
         context.SaveChanges();
         return Created($"/api/mucama/{unaMucama.id}", unaMucama);
     }
+
+    [HttpPut]
+    public ActionResult Put([FromBody] MucamaViewModel mucama, Guid id)
+    {
+        var mucamaConCambios = context.Mucamas.FirstOrDefault(m => m.id == id);
+
+        mucamaConCambios.Actualizar(mucama.Email, mucama.Nombre, mucama.apellido, mucama.Telefono, mucama.Domicilio);
+        context.SaveChanges();
+        return Ok(mucamaConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid id)
+    {
+        var mucamaABorrar = context.Mucamas.FirstOrDefault(m => m.id == id);
+        context.Mucamas.Remove(mucamaABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }
