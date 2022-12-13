@@ -21,6 +21,7 @@ public class KitchenServiceController : ControllerBase
         var kitchenServices = context.KitchenServices.ToList();
         return Ok(kitchenServices);
     }
+
     [HttpPost]
     public ActionResult Post(KitchenServiceViewModel nuevoKitechenService)
     {
@@ -29,5 +30,23 @@ public class KitchenServiceController : ControllerBase
         context.SaveChanges();
         return Created($"/api/kitchenService/{unkitchenService.IdRoomCharge}", unkitchenService);
     }
-    
+
+    [HttpPut]
+    public ActionResult Put([FromBody] KitchenServiceViewModel kitchenService, Guid IdRoomCharge)
+    {
+        var kitchenServiceConCambios = context.KitchenServices.FirstOrDefault(k => k.IdRoomCharge == IdRoomCharge);
+
+        kitchenServiceConCambios.Actualizar(kitchenService.descripcion, kitchenService.fecha, kitchenService.duracion);
+        context.SaveChanges();
+        return Ok(kitchenServiceConCambios);
+    }
+
+    [HttpDelete]
+    public ActionResult Delete(Guid IdRoomCharge)
+    {
+        var kitchenServiceABorrar = context.KitchenServices.FirstOrDefault(k => k.IdRoomCharge == IdRoomCharge);
+        context.KitchenServices.Remove(kitchenServiceABorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }
