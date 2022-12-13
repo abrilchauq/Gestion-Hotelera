@@ -18,4 +18,11 @@ public class RoomService : RoomCharge
         this.SeCobra = SeCobra;
         this.monto = 100;
     }
+
+    public void Actualizar(DateTime Solicitud, bool SeCobra, DateTime fecha, int duracion, string descripcion)
+    {
+        this.Solicitud = Solicitud;
+        this.SeCobra = SeCobra;
+
+    }
 }

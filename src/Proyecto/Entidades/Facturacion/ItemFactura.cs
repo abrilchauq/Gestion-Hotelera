@@ -24,4 +24,10 @@ public class ItemFactura
         this.Monto = monto;
         this.IdItemFactura = Guid.NewGuid();
     }
+    public void Actualizar(string Descripcion, double Monto, DateTime Fecha)
+    {
+        this.Descripcion = Descripcion;
+        this.Monto = Monto;
+        this.Fecha = Fecha;
+    }
 }

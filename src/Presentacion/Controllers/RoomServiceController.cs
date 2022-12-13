@@ -32,4 +32,11 @@ public class RoomServiceController : ControllerBase
         context.SaveChanges();
         return Created($"/api/roomService/{unRoomService.IdRoomCharge}", unRoomService);
     }
+
+    [HttpPut]
+
+    public ActionResult Put([FromBody] RoomServiceViewModel roomService, Guid id)
+    {
+        var RoomServiceConCambios.Actualizar()
+    }
 }

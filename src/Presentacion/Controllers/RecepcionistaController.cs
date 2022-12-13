@@ -32,4 +32,25 @@ public class RecepcionistaController : ControllerBase
         context.Recepcionistas.Add(unRecepcionista);
         return StatusCode(StatusCodes.Status201Created, unRecepcionista);
     }
+
+    [HttpPut]
+
+    public ActionResult Put([FromBody] RecepcionistaViewModel recepcionista, Guid idRecepcionista)
+    {
+        var RecepcionistaConCambios = context.Recepcionistas.FirstOrDefault(r => r.id == id);
+
+        RecepcionistaConCambios.Actualizar(recepcionista.Email, recepcionista.Nombre, recepcionista.apellido, recepcionista.Telefono, recepcionista.Domicilio);
+        context.SaveChanges();
+        return Ok(RecepcionistaConCambios);
+    }
+
+    [HttpDelete]
+
+    public ActionResult Delete(Guid id)
+    {
+        var RecepcionistaBorrar = context.Recepcionistas.FirstOrDefault(r => r.id == id);
+        context.Recepcionistas.Remove(RecepcionistaBorrar);
+        context.SaveChanges();
+        return Ok();
+    }
 }
