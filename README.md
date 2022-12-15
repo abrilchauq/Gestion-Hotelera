@@ -34,7 +34,7 @@ dotnet ef migrations add UnNuevoCambio --context HotelDbContext --output-dir Per
 ### How it works   
 - Para poder utilizar el swagger, primero debemos activar el servicio de base de datos. Una vez hecho esto, podemos continuar. 
 - En la aplicación, vamos a hacer click sobre el **POST**; en el cual nos va a aparecer una función llamada **try out**. Damos click en dicha función, y ahí nos permitirá ingresar los valores de la tabla, para probar oprimiremos el botón **Execute**. 
-- Iremos a el método **GET** para visualizar si se efectuaron los cambios con los valores que ingresamos anteriormente. 
+- Iremos al método **GET** para visualizar si se efectuaron los cambios con los valores que ingresamos anteriormente. 
 
 - Cuando queremos realizar cambios en los valores que ingresamos, utilizaremos el método **PUT**. Como hicimos anteriormente, vamos a clickear sobre **try out**. 
 - Este método nos va a permitir modificar todos los parámetros que necesitemos.
