@@ -8,17 +8,17 @@ public abstract class Persona
 {
     [Key]
     [Required]
-    public Guid id { get; protected set; }
+    public Guid id { get; set; }
     [StringLength(50)]
-    public string Email { get; protected set; }
+    public string Email { get; set; }
     [StringLength(50)]
-    public string Nombre { get; protected set; }
+    public string Nombre { get; set; }
     [StringLength(50)]
-    public string apellido { get; protected set; }
+    public string apellido { get; set; }
     [StringLength(50)]
-    public string Telefono { get; protected set; }
+    public string Telefono { get; set; }
     [StringLength(50)]
-    public string Domicilio { get; protected set; }
+    public string Domicilio { get; set; }
     public eTipoUsuario Tipo { get; set; }
     public Usuario? Usuario { get; set; }
 

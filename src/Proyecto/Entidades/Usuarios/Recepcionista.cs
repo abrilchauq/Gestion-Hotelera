@@ -1,11 +1,10 @@
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Proyecto.Entidades.Reservacion;
 using Proyecto.Entidades.Unidades;
 using Proyecto.Enums;
 
 namespace Proyecto.Entidades.Usuarios;
+
 [Table("Recepcionista")]
 public class Recepcionista : Persona, IBuscar
 {

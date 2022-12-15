@@ -26,7 +26,7 @@ public class Hotel
     public void Actualizar(string Nombre, string Ubicacion)
     {
         this.Nombre = Nombre;
-        this.Ubicacion = Ubicacion; 
+        this.Ubicacion = Ubicacion;
     }
 
     public void AgregarSede(Sede sede)

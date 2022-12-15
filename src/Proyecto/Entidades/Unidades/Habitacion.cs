@@ -59,4 +59,6 @@ public class Habitacion
         this.Tipo = (eTipoEstilo)tipo;
         this.PrecioReserva = precioReserva;
     }
+
+
 }

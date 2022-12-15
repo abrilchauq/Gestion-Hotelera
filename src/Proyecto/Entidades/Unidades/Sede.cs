@@ -26,4 +26,9 @@ public class Sede
         this.Nombre = Nombre;
         this.Ubicacion = Ubicacion;
     }
+
+    public void AgregarHabitacion(Habitacion habitacion)
+    {
+        this.Habitaciones.Add(habitacion);
+    }
 }

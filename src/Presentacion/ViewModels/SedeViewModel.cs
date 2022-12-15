@@ -5,4 +5,5 @@ public class SedeViewModel
 {
     public string Nombre { get; set; }
     public string Ubicacion { get; set; }
+
 }

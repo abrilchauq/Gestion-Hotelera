@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Presentacion.Persistencia.Migraciones
 {
-    public partial class MigracionInicial : Migration
+    public partial class UnNuevoCambio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -91,7 +91,7 @@ namespace Presentacion.Persistencia.Migraciones
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Ubicacion = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HotelIdHotel = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
+                    HotelIdHotel = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
@@ -100,7 +100,8 @@ namespace Presentacion.Persistencia.Migraciones
                         name: "FK_Sede_Hotel_HotelIdHotel",
                         column: x => x.HotelIdHotel,
                         principalTable: "Hotel",
-                        principalColumn: "IdHotel");
+                        principalColumn: "IdHotel",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -273,7 +274,7 @@ namespace Presentacion.Persistencia.Migraciones
                 name: "RoomCharge",
                 columns: table => new
                 {
-                    IdRoomCharge = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     fecha = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     duracion = table.Column<int>(type: "int", nullable: false),
                     descripcion = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
@@ -283,7 +284,7 @@ namespace Presentacion.Persistencia.Migraciones
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomCharge", x => x.IdRoomCharge);
+                    table.PrimaryKey("PK_RoomCharge", x => x.Id);
                     table.ForeignKey(
                         name: "FK_RoomCharge_Habitacion_HabitacionIdHabitacion",
                         column: x => x.HabitacionIdHabitacion,
@@ -347,18 +348,18 @@ namespace Presentacion.Persistencia.Migraciones
                 name: "Amenity",
                 columns: table => new
                 {
-                    IdRoomCharge = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     nombre = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Amenity", x => x.IdRoomCharge);
+                    table.PrimaryKey("PK_Amenity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Amenity_RoomCharge_IdRoomCharge",
-                        column: x => x.IdRoomCharge,
+                        name: "FK_Amenity_RoomCharge_Id",
+                        column: x => x.Id,
                         principalTable: "RoomCharge",
-                        principalColumn: "IdRoomCharge",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -367,16 +368,16 @@ namespace Presentacion.Persistencia.Migraciones
                 name: "KitchenService",
                 columns: table => new
                 {
-                    IdRoomCharge = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KitchenService", x => x.IdRoomCharge);
+                    table.PrimaryKey("PK_KitchenService", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_KitchenService_RoomCharge_IdRoomCharge",
-                        column: x => x.IdRoomCharge,
+                        name: "FK_KitchenService_RoomCharge_Id",
+                        column: x => x.Id,
                         principalTable: "RoomCharge",
-                        principalColumn: "IdRoomCharge",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -385,18 +386,18 @@ namespace Presentacion.Persistencia.Migraciones
                 name: "RoomService",
                 columns: table => new
                 {
-                    IdRoomCharge = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Solicitud = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     SeCobra = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomService", x => x.IdRoomCharge);
+                    table.PrimaryKey("PK_RoomService", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoomService_RoomCharge_IdRoomCharge",
-                        column: x => x.IdRoomCharge,
+                        name: "FK_RoomService_RoomCharge_Id",
+                        column: x => x.Id,
                         principalTable: "RoomCharge",
-                        principalColumn: "IdRoomCharge",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");

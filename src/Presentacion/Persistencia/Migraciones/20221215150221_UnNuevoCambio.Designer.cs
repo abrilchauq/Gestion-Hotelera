@@ -11,8 +11,8 @@ using Presentacion.Persistencia;
 namespace Presentacion.Persistencia.Migraciones
 {
     [DbContext(typeof(HotelDBContext))]
-    [Migration("20221129140147_MigracionInicial")]
-    partial class MigracionInicial
+    [Migration("20221215150221_UnNuevoCambio")]
+    partial class UnNuevoCambio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,7 @@ namespace Presentacion.Persistencia.Migraciones
 
             modelBuilder.Entity("Proyecto.Entidades.Facturacion.RoomCharge", b =>
                 {
-                    b.Property<Guid>("IdRoomCharge")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -91,7 +91,7 @@ namespace Presentacion.Persistencia.Migraciones
                     b.Property<double>("monto")
                         .HasColumnType("double");
 
-                    b.HasKey("IdRoomCharge");
+                    b.HasKey("Id");
 
                     b.HasIndex("HabitacionIdHabitacion");
 
@@ -247,7 +247,7 @@ namespace Presentacion.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("HotelIdHotel")
+                    b.Property<Guid>("HotelIdHotel")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Nombre")
@@ -462,9 +462,13 @@ namespace Presentacion.Persistencia.Migraciones
 
             modelBuilder.Entity("Proyecto.Entidades.Unidades.Sede", b =>
                 {
-                    b.HasOne("Proyecto.Entidades.Unidades.Hotel", null)
+                    b.HasOne("Proyecto.Entidades.Unidades.Hotel", "Hotel")
                         .WithMany("Sedes")
-                        .HasForeignKey("HotelIdHotel");
+                        .HasForeignKey("HotelIdHotel")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("Proyecto.Entidades.Usuarios.Persona", b =>
@@ -480,7 +484,7 @@ namespace Presentacion.Persistencia.Migraciones
                 {
                     b.HasOne("Proyecto.Entidades.Facturacion.RoomCharge", null)
                         .WithOne()
-                        .HasForeignKey("Proyecto.Entidades.Servicios.Amenity", "IdRoomCharge")
+                        .HasForeignKey("Proyecto.Entidades.Servicios.Amenity", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -489,7 +493,7 @@ namespace Presentacion.Persistencia.Migraciones
                 {
                     b.HasOne("Proyecto.Entidades.Facturacion.RoomCharge", null)
                         .WithOne()
-                        .HasForeignKey("Proyecto.Entidades.Servicios.KitchenService", "IdRoomCharge")
+                        .HasForeignKey("Proyecto.Entidades.Servicios.KitchenService", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -498,7 +502,7 @@ namespace Presentacion.Persistencia.Migraciones
                 {
                     b.HasOne("Proyecto.Entidades.Facturacion.RoomCharge", null)
                         .WithOne()
-                        .HasForeignKey("Proyecto.Entidades.Servicios.RoomService", "IdRoomCharge")
+                        .HasForeignKey("Proyecto.Entidades.Servicios.RoomService", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

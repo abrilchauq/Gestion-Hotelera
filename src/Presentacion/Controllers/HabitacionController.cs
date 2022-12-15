@@ -37,6 +37,16 @@ public class HabitacionController : ControllerBase
         return StatusCode(StatusCodes.Status201Created, unaHabitacion);
     }
 
+    [HttpPost("/api/Habitacion/{IdHabitacion:Guid}/ServicioLimpieza/{IdServicioLimpieza:Guid}")]
+    public ActionResult AgregarServicioLimpieza(Guid IdHabitacion, Guid IdServicioLimpieza)
+    {
+        var habitacion = context.Habitaciones.FirstOrDefault(h => h.IdHabitacion == IdHabitacion);
+        var servicioLimpieza = context.ServicioLimpiezas.FirstOrDefault(s => s.IdServicioLimpieza == IdServicioLimpieza);
+        habitacion.AgregarServicioLimpieza(servicioLimpieza);
+        context.SaveChanges();
+        return Ok("SE ASOCIO SERVIO LIMPIEZA");
+    }
+
     [HttpPut]
     public ActionResult Put([FromBody] HabitacionModificarViewModel habitacion, Guid IdHabitacion)
     {

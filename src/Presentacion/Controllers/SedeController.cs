@@ -32,6 +32,16 @@ public class SedeController : ControllerBase
         return StatusCode(StatusCodes.Status201Created, unaSede);
     }
 
+    [HttpPost("/api/Sede/{IdSede:Guid}/Habitacion/{IdHabitacion:Guid}")]
+    public ActionResult AgregarHabitacion(Guid IdSede, Guid IdHabitacion)
+    {
+        var sede = context.Sedes.FirstOrDefault(s => s.idSede == IdSede);
+        var habitacion = context.Habitaciones.FirstOrDefault(s => s.IdHabitacion == IdHabitacion);
+        sede.AgregarHabitacion(habitacion);
+        context.SaveChanges();
+        return Ok("SE ASOCIO UNA SEDE");
+    }
+
     [HttpPut]
     public ActionResult Put([FromBody] SedeViewModel sede, Guid idSede)
     {
