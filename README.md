@@ -1,7 +1,5 @@
 # Gestión Hotelera
 
-## Crear un proyecto 
-
 ## Acciones 
 - Abrir la carpeta del proyecto identificada como _**Gestion-Hotelera**_ con el VSCode. 
 - Una vez en el proyecto, debe hacerse click derecho a la opción _**abrir en terminal integrado**_ en la carpeta nombrada **src**. 
