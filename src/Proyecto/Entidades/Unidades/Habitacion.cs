@@ -38,7 +38,8 @@ public class Habitacion
     }
     public Habitacion()
     {
-
+        this.ServicioLimpiezas = new List<ServicioLimpieza>();
+        this.RoomCharges = new List<RoomCharge>();
     }
 
     public void Liberar()

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Presentacion.Persistencia;
 using Presentacion.ViewModels;
 using Proyecto.Entidades.Unidades;
@@ -19,7 +20,7 @@ public class HotelController : ControllerBase
     [HttpGet]
     public ActionResult Get()
     {
-        var hoteles = context.Hoteles.ToList();
+        var hoteles = context.Hoteles.Include(x => x.Sedes).ToList();
         return Ok(hoteles);
     }
 
