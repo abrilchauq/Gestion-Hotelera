@@ -25,13 +25,22 @@ public class MucamaController : ControllerBase
     }
 
     [HttpPost]
-
     public ActionResult Post(MucamaViewModel nuevaMucama)
     {
         var unaMucama = new Mucama(nuevaMucama.Email, nuevaMucama.Nombre, nuevaMucama.apellido, nuevaMucama.Telefono, nuevaMucama.Domicilio);
         context.Mucamas.Add(unaMucama);
         context.SaveChanges();
         return Created($"/api/mucama/{unaMucama.id}", unaMucama);
+    }
+
+    [HttpPost("/api/Mucama/{id:Guid}/Usuario/{idUsuario:Guid}")]
+    public ActionResult AsignarUsuario(Guid id, Guid idUsuario)
+    {
+        var mucama = context.Mucamas.FirstOrDefault(u => u.id == id);
+        var usuario = context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+        mucama.AsignarUsuario(usuario);
+        context.SaveChanges();
+        return Ok("Se asignó usuario");
     }
 
     [HttpPut]
@@ -52,4 +61,6 @@ public class MucamaController : ControllerBase
         context.SaveChanges();
         return Ok();
     }
+
+
 }

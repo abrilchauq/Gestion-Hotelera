@@ -34,6 +34,16 @@ public class RecepcionistaController : ControllerBase
         return StatusCode(StatusCodes.Status201Created, unRecepcionista);
     }
 
+    [HttpPost("/api/Recepcionista/{id:Guid}/Usuario/{idUsuario:Guid}")]
+    public ActionResult AsignarUsuario(Guid id, Guid idUsuario)
+    {
+        var recepcionista = context.Recepcionistas.FirstOrDefault(r => r.id == id);
+        var usuario = context.Usuarios.FirstOrDefault(r => r.IdUsuario == idUsuario);
+        recepcionista.AsignarUsuario(usuario);
+        context.SaveChanges();
+        return Ok("Se asignó usuario");
+    }
+
     [HttpPut]
 
     public ActionResult Put([FromBody] RecepcionistaViewModel recepcionista, Guid idRecepcionista)
